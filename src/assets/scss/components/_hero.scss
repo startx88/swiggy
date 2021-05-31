@@ -1,0 +1,27 @@
+.hero {
+  position: relative;
+  .h-200 {
+    height: 150px;
+  }
+  &.h-350 {
+    min-height: 350px;
+  }
+  //max-height: 350px;
+
+  background-color: $banner-color;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+
+  &-btm {
+    position: absolute;
+    bottom: -40px;
+    > div {
+      &:first-child {
+        flex: 2;
+      }
+      flex: 1;
+      box-shadow: $navbar-shadow;
+    }
+  }
+}

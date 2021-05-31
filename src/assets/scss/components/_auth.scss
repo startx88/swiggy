@@ -1,0 +1,69 @@
+.auth {
+  //background-color: $body-bg;
+  &-vcenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &-content {
+    max-width: 65%;
+  }
+  &-form {
+    max-width: 360px;
+    min-width: 300px;
+  }
+  &-title {
+    margin-bottom: 20px;
+    text-align: center;
+    h2 {
+      margin-bottom: 10px;
+    }
+  }
+  &-design {
+    position: relative;
+    &:before {
+      right: -100px;
+      position: absolute;
+      content: "";
+      height: 100%;
+      z-index: 1;
+      border-left: 100px solid $orange;
+      border-top: 0 solid transparent;
+      border-bottom: 1000px solid transparent;
+    }
+  }
+  &-footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.social {
+  .sep {
+    text-align: center;
+    display: block;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    position: relative;
+    color: $orange;
+    &:before,
+    &:after {
+      content: "";
+      margin: auto;
+      top: 25px;
+      width: 25%;
+      height: 1px;
+
+      background-color: $orange;
+      position: absolute;
+    }
+    &:before {
+      left: 20%;
+    }
+    &:after {
+      right: 20%;
+    }
+  }
+}

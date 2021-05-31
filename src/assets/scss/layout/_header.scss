@@ -1,0 +1,45 @@
+.navbar {
+  &-default {
+    .nav-item {
+      margin-left: 20px;
+      position: relative;
+      &:after {
+        border-bottom: 2px solid $primary;
+        content: "";
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        display: none;
+      }
+    }
+  }
+
+  .nav-item {
+    .nav-link {
+      color: $text-color;
+      &:hover {
+        color: $primary;
+      }
+    }
+    &.active {
+      .nav-link {
+        color: $primary;
+      }
+    }
+  }
+
+  &-vendor {
+    height: $navbar-height;
+    background-color: $navbar-light-bg;
+    box-shadow: $sidebar-shadow;
+    .nav-item {
+      margin-left: 15px;
+      display: flex;
+      align-items: center;
+    }
+  }
+  .nav-toggle {
+    padding: 10px;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,13 @@
+.vendor-welcom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: auto;
+  padding: 40px 30px;
+  border-radius: 5px;
+  background-color: $white;
+  box-shadow: 0 0px 7px rgb(0 0 0 / 15%);
+  max-width: 450px;
+}

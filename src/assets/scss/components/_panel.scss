@@ -1,0 +1,7 @@
+.panel {
+  padding: 20px;
+  &.white {
+    background-color: $white;
+    box-shadow: 0 0 4px $gray-200;
+  }
+}

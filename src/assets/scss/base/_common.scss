@@ -1,0 +1,101 @@
+/**
+* a, p, sizes
+*/
+p,
+label {
+  @each $k, $v in $paragraph {
+    &.#{$k} {
+      font-size: $v;
+    }
+  }
+}
+// font size generate xs, sm, md, lg, xl
+@each $k, $v in $paragraph {
+  .#{$k} {
+    font-size: $v;
+  }
+}
+
+// colors
+
+@each $k, $v in $custom-colors {
+  .text-#{$k} {
+    color: $v;
+  }
+  a.#{$k} {
+    color: $v;
+    &:hover {
+      color: darken($v, 10%);
+    }
+  }
+  .bg-#{$k} {
+    background-color: $v;
+  }
+}
+
+@each $k, $v in $widths {
+  .m#{$k} {
+    min-width: $v;
+  }
+  .#{$k} {
+    width: $v;
+  }
+}
+
+// font family
+@each $k, $v in $font-family {
+  .#{$k} {
+    font-family: $v;
+  }
+}
+
+.vcenter {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.v-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.h-center {
+  justify-content: center;
+}
+
+.flex {
+  @each $k, $v in $grid-breakpoints {
+    &-#{$k} {
+      flex: 1;
+      @media (min-width: $v) {
+        > div[class^="col-"] {
+          flex: 1;
+        }
+      }
+      @media (max-width: $v) {
+        > .col {
+          flex-basis: auto;
+        }
+      }
+    }
+  }
+}
+
+.no-row-pad {
+  div[class^="col-"] {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.google-map {
+  width: 100%;
+  height: 200px;
+  iframe {
+    width: 100%;
+    height: inherit;
+  }
+}

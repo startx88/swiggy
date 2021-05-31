@@ -1,0 +1,18 @@
+.card {
+  &-thumb {
+    border-color: $white;
+    border-radius: 0;
+    padding: 20px;
+    .card-imt-top {
+      background: #eef0f5;
+      width: 254px;
+      height: 160px;
+      position: relative;
+      overflow: hidden;
+    }
+    &:hover {
+      border-color: $gray-200;
+      box-shadow: 0 4px 7px 0 rgb(218 220 230 / 60%);
+    }
+  }
+}

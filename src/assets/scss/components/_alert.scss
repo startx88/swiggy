@@ -1,0 +1,28 @@
+.alert {
+  padding-right: 35px;
+  .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+  &-absolute {
+    position: absolute;
+    z-index: 100;
+  }
+  &.top-right {
+    right: 20px;
+    top: 20px;
+  }
+  &.top-left {
+    left: 20px;
+    top: 20px;
+  }
+  &.bottom-right {
+    right: 20px;
+    bottom: 20px;
+  }
+  &.bottom-left {
+    left: 20px;
+    bottom: 20px;
+  }
+}
