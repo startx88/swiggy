@@ -12,9 +12,7 @@ export class ModalComponent implements OnInit {
   @Output() close = new EventEmitter();
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.id);
-  }
+  ngOnInit(): void {}
 
   onCloseModal() {
     this.close.emit();

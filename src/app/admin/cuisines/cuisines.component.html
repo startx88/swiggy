@@ -1,1 +1,25 @@
-<p>cuisines works!</p>
+<app-page-title>
+  <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#cuisine-add">
+    Add Cuisine
+  </button>
+</app-page-title>
+
+<app-modal #modal [id]="'cuisine-add'" (close)="onClose()">
+  <header class="header">
+    <h5 class="mb-0">Add cuisine</h5>
+  </header>
+  <section class="body">
+    <form (ngSubmit)="onAddCuisine()" #form="ngForm">
+      <div class="form-group"
+        [ngClass]="{'is-valid': title.valid && title.touched,'is-invalid':title.invalid && title.touched}">
+        <label class="form-label">Cuisine name</label>
+        <input ngModel #title="ngModel" type="text" name="title" class="form-control gray" required
+          [ngClass]="{'is-valid': title.valid && title.touched,'is-invalid':title.invalid && title.touched}" />
+        <span class="invalid-feedback">Title is required!</span>
+      </div>
+      <div class="form-group text-right">
+        <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-xs">Add</button>
+      </div>
+    </form>
+  </section>
+</app-modal>

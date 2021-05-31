@@ -27,7 +27,7 @@ export class DataService {
   totalRecipes: string = 'Total recipes';
   satisfyUser: string = 'Satisfy user';
   adminMenu: IMenu[] = [
-    { id: '001', name: 'Dashbaord', icon: 'th', url: '/admin/dashboard' },
+    { id: '001', name: 'Dashbaord', icon: 'th', url: '/dashboard' },
     {
       id: '002',
       name: 'Category',

@@ -18,6 +18,8 @@ import { HeroComponent } from './components/hero/hero.component';
 import { SharedHeaderComponent } from './layout/shared-header/shared-header.component';
 import { SharedFooterComponent } from './layout/shared-footer/shared-footer.component';
 import { SharedSidebarComponent } from './layout/shared-sidebar/shared-sidebar.component';
+import { PageTitleComponent } from './page-title/page-title.component';
+import { CapitalizePipe } from './pipes/capitalize.pipe';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { SharedSidebarComponent } from './layout/shared-sidebar/shared-sidebar.c
     SharedHeaderComponent,
     SharedFooterComponent,
     SharedSidebarComponent,
+    PageTitleComponent,
+    CapitalizePipe,
   ],
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [
@@ -58,6 +62,8 @@ import { SharedSidebarComponent } from './layout/shared-sidebar/shared-sidebar.c
     SharedHeaderComponent,
     SharedFooterComponent,
     SharedSidebarComponent,
+    PageTitleComponent,
+    CapitalizePipe,
   ],
 })
 export class SharedModule {}

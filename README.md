@@ -26,4 +26,4 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice.
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-# http://preview.themeforest.net/item/natto-online-food-ordering-social-networking-html-template/full_screen_preview/23762958?_ga=2.267268044.398421450.1622377780-718741913.1592392176
+# https://gambolthemes.net/natto-new-demo/index.html
