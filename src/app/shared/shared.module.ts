@@ -15,6 +15,9 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { LogoComponent } from './logo/logo.component';
 import { RouterModule } from '@angular/router';
 import { HeroComponent } from './components/hero/hero.component';
+import { SharedHeaderComponent } from './layout/shared-header/shared-header.component';
+import { SharedFooterComponent } from './layout/shared-footer/shared-footer.component';
+import { SharedSidebarComponent } from './layout/shared-sidebar/shared-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { HeroComponent } from './components/hero/hero.component';
     LoaderComponent,
     LogoComponent,
     HeroComponent,
+    SharedHeaderComponent,
+    SharedFooterComponent,
+    SharedSidebarComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [
@@ -49,6 +55,9 @@ import { HeroComponent } from './components/hero/hero.component';
     LoaderComponent,
     LogoComponent,
     HeroComponent,
+    SharedHeaderComponent,
+    SharedFooterComponent,
+    SharedSidebarComponent,
   ],
 })
 export class SharedModule {}

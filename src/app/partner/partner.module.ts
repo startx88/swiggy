@@ -10,9 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { OutletComponent } from './outlet/outlet.component';
 import { PartnerRouterModule } from './partner.router.module';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { HeaderComponent } from './layout/header/header.component';
-import { FooterComponent } from './layout/footer/footer.component';
-import { SidebarComponent } from './layout/sidebar/sidebar.component';
+
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -25,9 +23,6 @@ import { SharedModule } from '../shared/shared.module';
     DashboardComponent,
     OutletComponent,
     WelcomeComponent,
-    HeaderComponent,
-    FooterComponent,
-    SidebarComponent,
   ],
   imports: [CommonModule, SharedModule, PartnerRouterModule],
 })

@@ -12,6 +12,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { SubCategoriesComponent } from './sub-categories/sub-categories.component';
 import { CuisinesComponent } from './cuisines/cuisines.component';
 import { AdminRouterModule } from './admin.router.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,6 @@ import { AdminRouterModule } from './admin.router.module';
     SubCategoriesComponent,
     CuisinesComponent,
   ],
-  imports: [CommonModule, AdminRouterModule],
+  imports: [CommonModule, SharedModule, AdminRouterModule],
 })
 export class AdminModule {}

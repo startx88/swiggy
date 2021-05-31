@@ -4,15 +4,19 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-partner',
   template: ` <div class="wrapper">
-    <app-sidebar *ngIf="router.url !== '/vendor/welcome'"></app-sidebar>
+    <app-shared-sidebar
+      *ngIf="router.url !== '/vendor/welcome'"
+    ></app-shared-sidebar>
     <div class="wrapper-container">
-      <app-header *ngIf="router.url !== '/vendor/welcome'"></app-header>
+      <app-shared-header
+        *ngIf="router.url !== '/vendor/welcome'"
+      ></app-shared-header>
       <div class="wrapper-content">
         <router-outlet></router-outlet>
       </div>
-      <app-vendor-footer
+      <app-shared-footer
         *ngIf="router.url !== '/vendor/welcome'"
-      ></app-vendor-footer>
+      ></app-shared-footer>
     </div>
   </div>`,
   styles: [],

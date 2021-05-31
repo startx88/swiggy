@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { IMenu } from '../models/menu.modal';
 
 @Injectable({
   providedIn: 'root',
@@ -25,5 +26,19 @@ export class DataService {
   registerdRestaurant: string = 'Register restaurant';
   totalRecipes: string = 'Total recipes';
   satisfyUser: string = 'Satisfy user';
+  adminMenu: IMenu[] = [
+    { id: '001', name: 'Dashbaord', icon: 'th', url: '/admin/dashboard' },
+    { id: '002', name: 'Category', icon: 'th', url: '/admin/categories' },
+    {
+      id: '003',
+      name: 'Subcategory',
+      icon: 'th',
+      url: '/admin/sub-categories',
+    },
+    { id: '004', name: 'Cuisines', icon: 'th', url: '/admin/cuisines' },
+    { id: '005', name: 'Outlets', icon: 'th', url: '/admin/outlets' },
+    { id: '006', name: 'Recipes', icon: 'th', url: '/admin/recipes' },
+    { id: '006', name: 'Users', icon: 'th', url: '/admin/users' },
+  ];
   constructor() {}
 }
