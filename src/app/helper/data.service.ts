@@ -28,17 +28,44 @@ export class DataService {
   satisfyUser: string = 'Satisfy user';
   adminMenu: IMenu[] = [
     { id: '001', name: 'Dashbaord', icon: 'th', url: '/admin/dashboard' },
-    { id: '002', name: 'Category', icon: 'th', url: '/admin/categories' },
+    {
+      id: '002',
+      name: 'Category',
+      icon: 'long-arrow-right',
+      url: '/categories',
+    },
     {
       id: '003',
       name: 'Subcategory',
-      icon: 'th',
-      url: '/admin/sub-categories',
+      icon: 'long-arrow-right',
+      url: '/sub-categories',
     },
-    { id: '004', name: 'Cuisines', icon: 'th', url: '/admin/cuisines' },
-    { id: '005', name: 'Outlets', icon: 'th', url: '/admin/outlets' },
-    { id: '006', name: 'Recipes', icon: 'th', url: '/admin/recipes' },
-    { id: '006', name: 'Users', icon: 'th', url: '/admin/users' },
+    {
+      id: '004',
+      name: 'Cuisines',
+      icon: 'long-arrow-right',
+      url: '/cuisines',
+    },
+    {
+      id: '005',
+      name: 'Outlets',
+      icon: 'long-arrow-right',
+      url: '/outlets',
+    },
+    {
+      id: '006',
+      name: 'Recipes',
+      icon: 'long-arrow-right',
+      url: '/recipes',
+    },
+    { id: '006', name: 'Users', icon: 'long-arrow-right', url: '/users' },
+  ];
+  partnerMenu: IMenu[] = [
+    { id: '001', name: 'Dashbaord', icon: 'th', url: '/dashboard' },
+    { id: '002', name: 'Outlet', icon: 'building ', url: '/outlet' },
+    { id: '004', name: 'Recipes', icon: 'coffee', url: '/recipes' },
+    { id: '005', name: 'Orders', icon: 'long-arrow-right', url: '/orders' },
+    { id: '006', name: 'Users', icon: 'users', url: '/users' },
   ];
   constructor() {}
 }

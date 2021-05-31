@@ -12,6 +12,7 @@ import { PartnerRouterModule } from './partner.router.module';
 import { WelcomeComponent } from './welcome/welcome.component';
 
 import { SharedModule } from '../shared/shared.module';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SharedModule } from '../shared/shared.module';
     DashboardComponent,
     OutletComponent,
     WelcomeComponent,
+    UsersComponent,
   ],
   imports: [CommonModule, SharedModule, PartnerRouterModule],
 })

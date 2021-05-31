@@ -17,9 +17,20 @@
   <ul class="sidebar-nav">
     <li class="header">Menu</li>
     <li class="nav-item" *ngFor="let menu of menus; let i = index">
-      <a class="nav-link" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active" [routerLink]="[menu.url]">
+      <a class="nav-link" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active"
+        [routerLink]="[url + menu.url]">
         <i class="fa fa-{{menu.icon}} mr-2"></i> {{menu.name}}
       </a>
+    </li>
+    <li class="header mt-3">Settings</li>
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="[url + '/profile']">
+        <i class="fa fa-user mr-2"></i> Profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="[url + '/setting']">
+        <i class="fa fa-cog mr-2"></i>
+        Setting</a>
     </li>
   </ul>
   <!-- Sidebar footer -->
