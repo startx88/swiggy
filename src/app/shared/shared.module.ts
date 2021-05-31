@@ -20,6 +20,7 @@ import { SharedFooterComponent } from './layout/shared-footer/shared-footer.comp
 import { SharedSidebarComponent } from './layout/shared-sidebar/shared-sidebar.component';
 import { PageTitleComponent } from './page-title/page-title.component';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
+import { LoginValidatorDirective } from './directives/login-validator.directive';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
     SharedSidebarComponent,
     PageTitleComponent,
     CapitalizePipe,
+    LoginValidatorDirective,
   ],
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [
@@ -64,6 +66,7 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
     SharedSidebarComponent,
     PageTitleComponent,
     CapitalizePipe,
+    LoginValidatorDirective,
   ],
 })
 export class SharedModule {}
