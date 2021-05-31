@@ -11,6 +11,7 @@ import { TabContentComponent } from './components/tab/tab-content/tab-content.co
 import { RowComponent } from './UI/row/row.component';
 import { ColComponent } from './UI/col/col.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TabContentComponent,
     RowComponent,
     ColComponent,
+    LoaderComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   exports: [
@@ -39,6 +41,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ColComponent,
     FormsModule,
     ReactiveFormsModule,
+    LoaderComponent,
   ],
 })
 export class SharedModule {}

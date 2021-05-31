@@ -11,6 +11,8 @@ import { PolicyComponent } from './views/policy/policy.component';
 import { AppRouterModule } from './app.router.module';
 
 import { SharedModule } from './shared/shared.module';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { SharedModule } from './shared/shared.module';
     PartnerWithUsComponent,
     NotFoundComponent,
     PolicyComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [BrowserModule, AppRouterModule, SharedModule],
   providers: [],

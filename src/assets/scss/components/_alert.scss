@@ -1,9 +1,9 @@
 .alert {
-  padding-right: 35px;
-  .close {
-    position: absolute;
-    right: 10px;
-    top: 10px;
+  .btn-close {
+    outline: none;
+    &:focus {
+      box-shadow: none;
+    }
   }
   &-absolute {
     position: absolute;
