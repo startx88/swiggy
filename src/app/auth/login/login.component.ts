@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DataService } from 'src/app/helper/data.service';
 import { IAuthResponse } from 'src/app/models/auth.model';
 import { AlertService } from 'src/app/services/alert.service';
@@ -13,11 +14,11 @@ import { Color } from 'src/app/utility/enums/color.enum ';
 })
 export class LoginComponent implements OnInit {
   isSubmit = false;
-
   constructor(
     public AppContent: DataService,
     private alert: AlertService,
-    private authSrv: AuthService
+    private authSrv: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -28,7 +29,6 @@ export class LoginComponent implements OnInit {
     this.authSrv.login(form.value).subscribe(
       (response: IAuthResponse) => {
         this.isSubmit = false;
-        console.log(response);
       },
       (error) => {
         this.isSubmit = false;

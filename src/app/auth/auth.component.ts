@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -7,7 +9,17 @@ import { Component, OnInit } from '@angular/core';
   host: { class: 'auth-root' },
 })
 export class AuthComponent implements OnInit {
-  constructor() {}
+  returnUrl: string;
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private authSrv: AuthService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    if (this.authSrv.isAuthenticate) {
+      this.router.navigate([this.returnUrl]);
+    }
+  }
 }

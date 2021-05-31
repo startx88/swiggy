@@ -6,6 +6,9 @@ import { HomeComponent } from './views/home/home.component';
 import { PartnerWithUsComponent } from './views/partner-with-us/partner-with-us.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
 import { PolicyComponent } from './views/policy/policy.component';
+import { AuthGuard } from './helper/auth.guard';
+import { AdminGuard } from './helper/admin.guard';
+import { PartnerGuard } from './helper/partner.guard';
 
 // App Routes
 const appRoutes: Routes = [
@@ -20,15 +23,18 @@ const appRoutes: Routes = [
   },
   {
     path: 'user',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
   },
   {
     path: 'partner',
+    canActivate: [AuthGuard, PartnerGuard],
     loadChildren: () =>
       import('./partner/partner.module').then((m) => m.PartnerModule),
   },
   {
     path: 'admin',
+    canActivate: [AuthGuard, AdminGuard],
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
