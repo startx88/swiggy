@@ -1,1 +1,15 @@
-<p>modal works!</p>
+<div class="modal fade {{size}}" [id]="id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <ng-content select=".header"></ng-content>
+        <button type="button" class="close" (click)="onCloseModal()" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ng-content select=".body"></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

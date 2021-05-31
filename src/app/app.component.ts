@@ -6,9 +6,12 @@ import { AlertService } from './services/alert.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  host: { class: 'root' },
 })
 export class AppComponent implements OnInit {
   loading: boolean = false;
+  visible: boolean = false;
+  protected: string[] = ['partner', 'admin', 'auth'];
   constructor(private router: Router, public alertSrv: AlertService) {}
 
   ngOnInit() {
@@ -21,8 +24,15 @@ export class AppComponent implements OnInit {
       }
 
       if (event instanceof NavigationStart || event instanceof NavigationEnd) {
-        const url = event.url;
-        // console.log(url);
+        const e = event.url.split('/').filter((x) => x)[0];
+        if (
+          this.protected.includes(e) ||
+          (e && e.toString().includes('auth?returnUrl='))
+        ) {
+          this.visible = false;
+        } else {
+          this.visible = true;
+        }
       }
     });
   }

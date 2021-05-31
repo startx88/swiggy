@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +6,9 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  @Input() url: string;
   constructor() {}
 
-  ngOnInit(): void {
-    console.log('h', this.url);
-  }
+  ngOnInit(): void {}
+
+  onLogout() {}
 }

@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./assets/scss/globals/variables";
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "~bootstrap/scss/bootstrap.scss";
 @import "./assets/scss/globals/mixins";
 @import "./assets/scss/globals/functions";
 @import "./assets/scss/globals/placeholders";

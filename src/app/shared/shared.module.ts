@@ -12,6 +12,9 @@ import { RowComponent } from './UI/row/row.component';
 import { ColComponent } from './UI/col/col.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoaderComponent } from './components/loader/loader.component';
+import { LogoComponent } from './logo/logo.component';
+import { RouterModule } from '@angular/router';
+import { HeroComponent } from './components/hero/hero.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +29,10 @@ import { LoaderComponent } from './components/loader/loader.component';
     RowComponent,
     ColComponent,
     LoaderComponent,
+    LogoComponent,
+    HeroComponent,
   ],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [
     AlertComponent,
     ButtonComponent,
@@ -42,6 +47,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     FormsModule,
     ReactiveFormsModule,
     LoaderComponent,
+    LogoComponent,
+    HeroComponent,
   ],
 })
 export class SharedModule {}
