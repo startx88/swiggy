@@ -52,7 +52,7 @@
           <p class="xs">If you have an account, please click on <a routerLink="/auth">Sign In</a></p>
         </div>
         <div class="auth-body mb-4">
-          <div class="row mb-3">
+          <div class="row ">
             <div class="form-group col"
               [ngClass]="{'is-valid':firstname.valid && firstname.touched,'is-invalid':firstname.invalid && firstname.touched}">
               <input type="text" name="firstname" class="form-control primary" placeholder="First Name"
@@ -72,7 +72,7 @@
               ngModel required
               [ngClass]="{'is-valid':email.valid && email.touched,'is-invalid':email.invalid && email.touched}" />
           </div>
-          <div class="row mb-3 mt-3">
+          <div class="row mt-3">
             <div class="form-group col"
               [ngClass]="{'is-valid':password.valid && password.touched,'is-invalid':password.invalid && password.touched}">
               <input type="password" name="password" class="form-control primary" placeholder="*********"

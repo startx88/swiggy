@@ -47,14 +47,14 @@
           <p class="xs">If you don't have an account, please click here <a routerLink="/auth/register">Sign Up</a></p>
         </div>
         <div class="auth-body mb-4">
-          <div class="form-group mb-3"
+          <div class="form-group"
             [ngClass]="{'is-valid':email.valid && email.touched,'is-invalid':email.invalid && email.touched}">
             <input type="email" class="form-control primary" placeholder="Email" #email="ngModel" name="email" email
               ngModel required
               [ngClass]="{'is-valid':email.valid && email.touched,'is-invalid':email.invalid && email.touched}" />
             <span class="help-block xs text-danger" *ngIf="email.pristine && email.touched">Email is required</span>
           </div>
-          <div class="form-group  mb-3"
+          <div class="form-group"
             [ngClass]="{'is-valid':password.valid && password.touched,'is-invalid':password.invalid && password.touched}">
             <input type="password" name="password" class="form-control primary" placeholder="************"
               #password="ngModel" ngModel required
@@ -65,7 +65,7 @@
           <div class="form-group d-flex justify-content-between align-items-center mb-4">
             <div class="form-checkbox ">
               <input type="checkbox" name="remember" id="remember" />
-              <label for="remember" class="primary xs">Remeber me</label>
+              <label for="remember" class="primary xs ml-2">Remeber me</label>
             </div>
             <a routerLink="/auth/forgot-password" class="xs">
               <i class="fa fa-key mr-2"></i> Forgot Password
