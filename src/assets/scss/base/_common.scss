@@ -3,6 +3,12 @@
 */
 p,
 label {
+  &.light {
+    font-weight: 300;
+  }
+  &.line-ht {
+    line-height: 1.5em;
+  }
   @each $k, $v in $paragraph {
     &.#{$k} {
       font-size: $v;
