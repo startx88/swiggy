@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './views/home/home.component';
 import { AboutComponent } from './views/about/about.component';
@@ -26,7 +26,7 @@ import { FooterComponent } from './layout/footer/footer.component';
     HeaderComponent,
     FooterComponent,
   ],
-  imports: [BrowserModule, AppRouterModule, SharedModule],
+  imports: [BrowserModule, AppRouterModule, SharedModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

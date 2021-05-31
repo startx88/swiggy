@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataService } from 'src/app/helper/data.service';
+import { IAuthResponse } from 'src/app/models/auth.model';
 import { AlertService } from 'src/app/services/alert.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Color } from 'src/app/utility/enums/color.enum ';
 
 @Component({
@@ -11,16 +13,31 @@ import { Color } from 'src/app/utility/enums/color.enum ';
 })
 export class LoginComponent implements OnInit {
   isSubmit = false;
-  constructor(public AppContent: DataService, private alert: AlertService) {}
+
+  constructor(
+    public AppContent: DataService,
+    private alert: AlertService,
+    private authSrv: AuthService
+  ) {}
 
   ngOnInit(): void {}
 
-  onLogin(fomr: NgForm) {
-    this.alert.alertShow({
-      color: Color.danger,
-      message:
-        'Something went wrong Something went wrong Something went wrong Something went wrong Something went wrong Something went wrong ',
-      visible: true,
-    });
+  onLogin(form: NgForm) {
+    this.isSubmit = true;
+    if (form.invalid) return;
+    this.authSrv.login(form.value).subscribe(
+      (response: IAuthResponse) => {
+        this.isSubmit = false;
+        console.log(response);
+      },
+      (error) => {
+        this.isSubmit = false;
+        this.alert.alertShow({
+          color: Color.danger,
+          message: error.message,
+          visible: true,
+        });
+      }
+    );
   }
 }
