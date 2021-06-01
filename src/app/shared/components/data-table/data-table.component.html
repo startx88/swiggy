@@ -1,3 +1,10 @@
+<ng-template #image let-image>
+  <td><img [src]="image" alt="" /></td>
+</ng-template>
+<ng-template #date let-date>
+  <td><time>{{date | date:'short'}}</time> </td>
+</ng-template>
+
 <div class="table-responsive">
   <table class="table">
     <thead>
@@ -14,9 +21,24 @@
     <tbody>
       <tr *ngFor="let row of data; let i=index; trackBy:trackById">
         <ng-template ngFor let-item [ngForOf]="row | keyvalue" let-i="index" [ngForTrackBy]="trackByFn">
-          <td *ngIf="!hideColumns.includes(item.key); else elseBlock">
-            {{item.value }}
-          </td>
+          <ng-container *ngIf="!hideColumns.includes(item.key); else elseBlock">
+            <ng-container *ngIf="item.key==='active';else other">
+              <td> <span [ngClass]="{active:item.value, 'in-active':!item.value}"></span> </td>
+            </ng-container>
+            <ng-template #other>
+              <ng-container *ngIf="item.key==='image'; else dateBlock">
+                <ng-container *ngTemplateOutlet="image; context:{$implicit:item.value}"></ng-container>
+              </ng-container>
+            </ng-template>
+            <ng-template #dateBlock>
+              <ng-container *ngIf="item.key==='insertAt';else otherBlock">
+                <ng-container *ngTemplateOutlet="date; context:{$implicit:item.value}"></ng-container>
+              </ng-container>
+            </ng-template>
+            <ng-template #otherBlock>
+              <td>{{item.value}}</td>
+            </ng-template>
+          </ng-container>
           <ng-template #elseBlock></ng-template>
         </ng-template>
         <td *ngIf="isAction" class="text-right">
