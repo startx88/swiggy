@@ -13,8 +13,8 @@ import { Color } from 'src/app/utility/enums/color.enum ';
   styleUrls: ['./cuisines.component.scss'],
 })
 export class CuisinesComponent implements OnInit {
-  @ViewChild(ModalComponent) modal: ModalComponent;
   @ViewChild('form') form: NgForm;
+  @ViewChild(ModalComponent) modal: ModalComponent;
   @ViewChild('modalButton') modalOpenButton: ElementRef;
   keys: string[];
   data: ICuisine[];
@@ -48,8 +48,9 @@ export class CuisinesComponent implements OnInit {
   }
   onDeleteHandler(id: string) {
     this.cuisineService.deleted(id).subscribe(
-      (data) => this.handler(Color.success, 'Cuisine deleted successfully!'),
-      ({ message }) => this.handler(Color.danger, message)
+      (data) =>
+        this.displayMessage(Color.success, 'Cuisine deleted successfully!'),
+      ({ message }) => this.displayMessage(Color.danger, message)
     );
   }
 
@@ -79,9 +80,9 @@ export class CuisinesComponent implements OnInit {
             this.isEdit = false;
             this.modal.hide();
             this.form.reset();
-            this.handler(Color.success, 'Cuisine updated successfully!');
+            this.displayMessage(Color.success, 'Cuisine updated successfully!');
           },
-          ({ message }) => this.handler(Color.danger, message)
+          ({ message }) => this.displayMessage(Color.danger, message)
         );
     } else {
       this.cuisineService.addUpdateCuisine(data).subscribe(
@@ -89,15 +90,15 @@ export class CuisinesComponent implements OnInit {
           this.isEdit = false;
           this.form.reset();
           this.modal.hide();
-          this.handler(Color.success, 'Cuisine added successfully!');
+          this.displayMessage(Color.success, 'Cuisine added successfully!');
         },
-        ({ message }) => this.handler(Color.danger, message)
+        ({ message }) => this.displayMessage(Color.danger, message)
       );
     }
   }
 
   // error handler
-  handler(color: Color, message: string) {
+  displayMessage(color: Color, message: string) {
     this.alert.alertShow({
       color: color,
       message: message,

@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  AfterContentInit,
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 
 @Component({
   selector: 'app-upload',
@@ -9,12 +17,11 @@ export class UploadComponent implements OnInit {
   @Input() label: string = 'Select file';
   @Input() single: boolean = false;
   @Input() optional: boolean = false;
+  @Input() img: string;
   @Output() upload = new EventEmitter();
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.optional);
-  }
+  ngOnInit(): void {}
 
   onChangeHandler(event: any): void {
     const files = event.target.files;

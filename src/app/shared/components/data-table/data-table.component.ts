@@ -13,7 +13,7 @@ import {
   styleUrls: ['./data-table.component.scss'],
 })
 export class DataTableComponent implements OnInit {
-  @Input() data: any[];
+  @Input() data: any[] = [];
   @Input() hideColumns: string[] = ['createdAt', 'updatedAt', 'id'];
   @Input() isAction: boolean = true;
   @Input() limit: number = 5;
@@ -31,8 +31,9 @@ export class DataTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.filteredData = this.data;
-    this.totalPage = Math.ceil(this.data.length / this.limit);
-    this.colspan = Object.keys(this.data[0]).length + 1;
+    this.totalPage = this.data && Math.ceil(this.data.length / this.limit);
+    this.colspan =
+      this.data.length > 0 ? Object.keys(this.data[0]).length + 1 : 0;
   }
 
   // search handler

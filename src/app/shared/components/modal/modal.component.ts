@@ -18,6 +18,7 @@ export class ModalComponent implements OnInit {
   @Input() id: string;
   @Input() size: Size = Size.sm;
   @Output() close = new EventEmitter();
+
   @ViewChild('close') closeModal: ElementRef;
   constructor() {}
 

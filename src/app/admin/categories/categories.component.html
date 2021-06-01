@@ -1,5 +1,7 @@
 <app-page-title>
-  <app-button data-toggle="modal" data-target="#add-category">Hello</app-button>
+  <button type="button" class="btn btn-primary btn-xs" #modalButton data-toggle="modal" data-target="#add-category">
+    Add category
+  </button>
 </app-page-title>
 
 
@@ -12,7 +14,16 @@
         <label class="form-label">Category name</label>
         <input ngModel #title="ngModel" type="text" name="title" class="form-control gray" required
           [ngClass]="{'is-valid': title.valid && title.touched,'is-invalid':title.invalid && title.touched}" />
-        <span class="invalid-feedback">Name is required!</span>
+        <span class="invalid-feedback">Title is required!</span>
+      </div>
+      <div class="form-group">
+        <app-upload [single]="true" id="image" name="image" [img]="imagePath" (upload)="onUpload($event)">
+        </app-upload>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Category name (optional)</label>
+        <textarea ngModel type="text" #description="ngModel" name="description" class="form-control gray">
+        </textarea>
       </div>
       <div class="form-group text-right">
         <app-button [disabled]="form.invalid" type="submit">
@@ -22,3 +33,20 @@
     </form>
   </section>
 </app-modal>
+
+
+<app-panel [type]="'white'" *ngIf="categories.length>0; else nodata">
+  <div class="panel-title">
+    <h4 class="mb-0">Cuisines</h4>
+  </div>
+  <section class="panel-body">
+    <app-data-table (onDelete)="onDeleteHandler($event)" (onEdit)="onEditHandler($event)"
+      (onActivate)="onActivateHandler($event)" (onDeactivate)="onDeactivateHandler($event)" [data]="categories">
+    </app-data-table>
+  </section>
+</app-panel>
+<ng-template #nodata>
+  <div class="no-data">
+    <img src="../../assets/images/no-data.png">
+  </div>
+</ng-template>
