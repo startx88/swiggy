@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 
+type NewType = CuisinesService;
+
 @Component({
   selector: 'app-cuisines',
   templateUrl: './cuisines.component.html',
@@ -10,7 +12,7 @@ import { ModalComponent } from 'src/app/shared/components/modal/modal.component'
 export class CuisinesComponent implements OnInit {
   @ViewChild('modal') modal: ElementRef;
   @ViewChild('form') form: NgForm;
-  constructor() {}
+  constructor(private cuisineService: NewType) {}
 
   ngOnInit(): void {}
 

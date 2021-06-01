@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Color } from 'src/app/utility/enums/color.enum ';
+import { Size } from 'src/app/utility/enums/size.enum';
 
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss']
+  styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  @Input() color: Color = Color.primary;
+  @Input() size: Size = Size.xs;
+  @Input() disabled: boolean = false;
+  constructor() {}
+  ngOnInit(): void {}
 }

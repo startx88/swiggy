@@ -1,1 +1,24 @@
-<app-page-title></app-page-title>
+<app-page-title>
+  <app-button data-toggle="modal" data-target="#add-category">Hello</app-button>
+</app-page-title>
+
+
+<app-modal [id]="'add-category'" (close)="onModalClose()">
+  <header class="header">Add Category</header>
+  <section class="body">
+    <form novalidate #form="ngForm" (ngSubmit)="addCategory()">
+      <div class="form-group"
+        [ngClass]="{'is-valid': title.valid && title.touched,'is-invalid':title.invalid && title.touched}">
+        <label class="form-label">Category name</label>
+        <input ngModel #title="ngModel" type="text" name="title" class="form-control gray" required
+          [ngClass]="{'is-valid': title.valid && title.touched,'is-invalid':title.invalid && title.touched}" />
+        <span class="invalid-feedback">Name is required!</span>
+      </div>
+      <div class="form-group text-right">
+        <app-button [disabled]="form.invalid" type="submit">
+          Add Category
+        </app-button>
+      </div>
+    </form>
+  </section>
+</app-modal>
