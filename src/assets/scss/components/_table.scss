@@ -17,27 +17,6 @@
       width: 35px;
     }
   }
-}
-
-.data-table {
-  &-responsive {
-    max-width: 100%;
-  }
-  &-topbar,
-  &-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  &-range {
-    @extend .data-table-bottom;
-    span {
-      display: inline-block;
-    }
-  }
-}
-
-.table {
   tr {
     &.no-record {
       border-top: 1px solid $border-color;
@@ -67,5 +46,28 @@
   }
   .active {
     background-color: $success;
+  }
+  &-bottom {
+    padding: 10px;
+    margin-top: 10px;
+    border-top: 1px solid $gray-200;
+  }
+}
+
+.data-table {
+  &-responsive {
+    max-width: 100%;
+  }
+  &-topbar,
+  &-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &-range {
+    @extend .data-table-bottom;
+    span {
+      display: inline-block;
+    }
   }
 }
