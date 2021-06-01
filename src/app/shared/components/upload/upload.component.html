@@ -1,0 +1,6 @@
+<div class="form-group">
+  <label *ngIf="label">{{label}} <span *ngIf="optional">(optional)</span></label>
+  <input type="file" class="form-control gray" #image name="image" (change)="onChangeHandler($event)"
+    [attr.required]="optional" />
+  <span class="invalid-feedback">Please select file</span>
+</div>

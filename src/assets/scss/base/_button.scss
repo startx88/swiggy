@@ -62,4 +62,12 @@
       border-color: $facebook-hover;
     }
   }
+  &-icon {
+    padding: 0px 4px;
+    box-shadow: none;
+    min-width: auto;
+    &:hover {
+      background-color: $gray-300;
+    }
+  }
 }

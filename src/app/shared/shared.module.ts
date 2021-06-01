@@ -22,6 +22,10 @@ import { PageTitleComponent } from './page-title/page-title.component';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { LoginValidatorDirective } from './directives/login-validator.directive';
 import { ImgComponent } from './components/img/img.component';
+import { UploadComponent } from './components/upload/upload.component';
+import { CardComponent } from './UI/card/card.component';
+import { PanelComponent } from './UI/panel/panel.component';
+import { DataTableComponent } from './components/data-table/data-table.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,10 @@ import { ImgComponent } from './components/img/img.component';
     CapitalizePipe,
     LoginValidatorDirective,
     ImgComponent,
+    UploadComponent,
+    CardComponent,
+    PanelComponent,
+    DataTableComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [
@@ -69,6 +77,10 @@ import { ImgComponent } from './components/img/img.component';
     PageTitleComponent,
     CapitalizePipe,
     LoginValidatorDirective,
+    UploadComponent,
+    CardComponent,
+    PanelComponent,
+    DataTableComponent,
   ],
 })
 export class SharedModule {}

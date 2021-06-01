@@ -11,6 +11,7 @@ export class ButtonComponent implements OnInit {
   @Input() color: Color = Color.primary;
   @Input() size: Size = Size.xs;
   @Input() disabled: boolean = false;
+  @Input() iconBtn: boolean = false;
   constructor() {}
   ngOnInit(): void {}
 }
