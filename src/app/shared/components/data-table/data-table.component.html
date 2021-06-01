@@ -6,6 +6,12 @@
 </ng-template>
 
 <div class="table-responsive">
+  <div class="d-flex table-header">
+    <div class="table-search">
+      <i class="fa fa-search"></i>
+      <input type="text" placeholder="Search keyword..." class="form-control gray" (input)="onSearchHandler($event)" />
+    </div>
+  </div>
   <table class="table">
     <thead>
       <tr>
@@ -18,8 +24,8 @@
         <td class="text-right" *ngIf="isAction">Actions</td>
       </tr>
     </thead>
-    <tbody>
-      <tr *ngFor="let row of data | slice:page - 1:limit; let i=index; trackBy:trackById">
+    <tbody *ngIf="filteredData.length>0;else nodata">
+      <tr *ngFor="let row of filteredData | slice:page - 1:limit; let i=index; trackBy:trackById">
         <ng-template ngFor let-item [ngForOf]="row | keyvalue" let-i="index" [ngForTrackBy]="trackByFn">
           <ng-container *ngIf="!hideColumns.includes(item.key); else elseBlock">
             <ng-container *ngIf="item.key==='active';else other">
@@ -52,6 +58,15 @@
         </td>
       </tr>
     </tbody>
+    <ng-template #nodata>
+      <tbody>
+        <tr>
+          <td [attr.colspan]="colspan" class="no-record">
+            No record found <i class="fa fa-smile-o "></i>
+          </td>
+        </tr>
+      </tbody>
+    </ng-template>
   </table>
   <div class="d-flex w-full table-bottom justify-content-between align-items-center">
     <div class="xs text-gray">

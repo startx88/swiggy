@@ -21,12 +21,30 @@ export class DataTableComponent implements OnInit {
   @Output() onDeactivate = new EventEmitter<string>();
   @Output() onDelete = new EventEmitter<string>();
   @Output() onEdit = new EventEmitter<{ item: any }>();
+
+  filteredData: any = [];
+  search: string = '';
   page: number = 1;
   totalPage: number;
+  colspan: number;
   constructor() {}
 
   ngOnInit(): void {
+    this.filteredData = this.data;
     this.totalPage = Math.ceil(this.data.length / this.limit);
+    this.colspan = Object.keys(this.data[0]).length + 1;
+  }
+
+  // search handler
+  onSearchHandler(event: any) {
+    const value = event.target.value.toLowerCase();
+    if (value !== '') {
+      this.filteredData = this.data.filter((item) => {
+        return Object.keys(item).some((key) =>
+          item[key].toString().includes(value)
+        );
+      });
+    }
   }
 
   // track by
