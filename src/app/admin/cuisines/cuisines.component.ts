@@ -39,7 +39,6 @@ export class CuisinesComponent implements OnInit {
     this.form.setValue({
       title: item.title,
     });
-    console.log('item', this.form.value);
   }
   onActivateHandler(id: string) {
     console.log('item', id);
@@ -48,7 +47,10 @@ export class CuisinesComponent implements OnInit {
     console.log('item', id);
   }
   onDeleteHandler(id: string) {
-    console.log('item', id);
+    this.cuisineService.deleted(id).subscribe(
+      (data) => this.handler(Color.success, 'Cuisine deleted successfully!'),
+      ({ message }) => this.handler(Color.danger, message)
+    );
   }
 
   // close modal

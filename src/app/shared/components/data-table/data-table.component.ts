@@ -21,9 +21,7 @@ export class DataTableComponent implements OnInit {
   @Output() onDelete = new EventEmitter<string>();
   @Output() onEdit = new EventEmitter<{ item: any }>();
   constructor() {}
-  ngOnInit(): void {
-    console.log(this.data);
-  }
+  ngOnInit(): void {}
   // track by
   trackById(id: string, item: any) {
     return item.id;

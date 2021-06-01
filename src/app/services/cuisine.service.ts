@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ICuisine } from '../models/cuisine.model';
 
@@ -10,8 +10,8 @@ import { ICuisine } from '../models/cuisine.model';
 })
 export class CuisineService {
   url: string = environment.apiUrl + '/cuisine';
-  cuisines = new BehaviorSubject<ICuisine[]>(null);
-
+  cuisineChange = new BehaviorSubject<ICuisine[]>(null);
+  cuisines: ICuisine[] = [];
   constructor(private http: HttpClient) {}
 
   // get cuisines
@@ -20,7 +20,8 @@ export class CuisineService {
       catchError(this.errorHandler),
       tap((response: ICuisine[]) => {
         response.sort((a, b) => a.title.localeCompare(b.title));
-        this.cuisines.next(response);
+        this.cuisines = response;
+        this.cuisineChange.next(this.cuisines.slice());
       })
     );
   }
@@ -39,22 +40,32 @@ export class CuisineService {
       return this.http.post<ICuisine>(`${this.url}/${id}`, form).pipe(
         catchError(this.errorHandler),
         tap((response: ICuisine) => {
-          console.log(response);
-          console.log('value', this.cuisines.value);
+          const index = this.cuisines.findIndex((x) => x.id === id);
+          this.cuisines[index] = response;
+          this.cuisineChange.next(this.cuisines.slice());
         })
       );
     } else {
-      return this.http
-        .post<ICuisine>(this.url, form)
-        .pipe(catchError(this.errorHandler));
+      return this.http.post<ICuisine>(this.url, form).pipe(
+        catchError(this.errorHandler),
+        tap((response: ICuisine) => {
+          this.cuisines.push(response);
+          this.cuisineChange.next(this.cuisines.slice());
+        })
+      );
     }
   }
 
   // delete cuisines
   deleted(id: string) {
-    return this.http
-      .delete(`${this.url}/${id}`)
-      .pipe(catchError(this.errorHandler));
+    return this.http.delete(`${this.url}/${id}`).pipe(
+      catchError(this.errorHandler),
+      tap(() => {
+        const index = this.cuisines.findIndex((x) => x.id === id);
+        this.cuisines.splice(index, 1);
+        this.cuisineChange.next(this.cuisines.slice());
+      })
+    );
   }
 
   // error handler
