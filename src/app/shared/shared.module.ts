@@ -21,6 +21,7 @@ import { SharedSidebarComponent } from './layout/shared-sidebar/shared-sidebar.c
 import { PageTitleComponent } from './page-title/page-title.component';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { LoginValidatorDirective } from './directives/login-validator.directive';
+import { ImgComponent } from './UI/img/img.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { LoginValidatorDirective } from './directives/login-validator.directive'
     PageTitleComponent,
     CapitalizePipe,
     LoginValidatorDirective,
+    ImgComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [

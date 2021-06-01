@@ -20,6 +20,7 @@ export class AuthService {
   redirectTo = new BehaviorSubject<string>('/');
   loggedIn = false;
   token: boolean;
+  clearTimer;
   constructor(private http: HttpClient, private router: Router) {
     this.loggedIn = !!localStorage.getItem('token');
   }
@@ -29,10 +30,15 @@ export class AuthService {
     return this.http.post<IAuthResponse>(this.url, user).pipe(
       catchError(this.errorHandler),
       map((response: IAuthResponse) => {
-        const { data, message, expireIn, token } = response;
+        const { data, expireIn, token } = response;
         this.loggedIn = !!token;
+        const expireTime = new Date(new Date().getTime() + expireIn * 1000);
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(data));
+        localStorage.setItem('expireTime', JSON.stringify(expireTime));
         this.user.next(data);
         this.redirection(data);
+        this.autoLogout(expireIn * 1000); // start timing for auto logout
         return response;
       })
     );
@@ -52,6 +58,45 @@ export class AuthService {
     return this.http.post<IAuthResponse>(this.url + '/forgot-password', email);
   }
   // verify email verification
+
+  // auto login
+  autoLogin() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const expireTime = new Date(JSON.parse(localStorage.getItem('expireTime')));
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return;
+    }
+    if (token) {
+      if (expireTime > new Date()) {
+        this.autoLogout(expireTime.getTime() - new Date().getTime());
+      }
+      this.loggedIn = true;
+      this.user.next(user);
+      //this.redirection(user);
+    }
+    return null;
+  }
+
+  // logout
+  logout() {
+    this.loggedIn = false;
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('expireTime');
+    this.router.navigate(['/auth']);
+    if (this.clearTimer) {
+      clearTimeout(this.clearTimer);
+    }
+    this.clearTimer = null;
+  }
+
+  // auto logout
+  autoLogout(timer: number) {
+    this.clearTimer = setTimeout(() => {
+      this.logout();
+    }, timer);
+  }
 
   // error handler
   errorHandler(error: HttpErrorResponse) {

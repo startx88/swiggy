@@ -20,6 +20,7 @@ export class DataService {
   poweredBy: string = 'startx.com';
   singin: string = 'Sign In';
   signup: string = 'Sign Up';
+
   socialText: string = 'Sign in with google and facebook';
   googleText: string = 'Google';
   fbText: string = 'Facebook';

@@ -7,7 +7,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { exhaustMap, map, take } from 'rxjs/operators';
 import { IRole } from '../models/auth.model';
 import { AuthService } from '../services/auth.service';
 
@@ -23,8 +23,9 @@ export class AdminGuard implements CanActivate {
     | boolean
     | UrlTree {
     return this.authSrv.user.pipe(
+      take(1),
       map((user) => {
-        if (user.role === IRole.admin) {
+        if (user?.role === IRole.admin) {
           return true;
         }
         this.router.navigate(['/auth'], {

@@ -14,17 +14,18 @@
         <i class="fa fa-bell"></i>
       </a>
     </li>
-    <li class="nav-item dropdown dropleft">
+    <li class="nav-item dropdown" *ngIf="(user$ | async) as user">
       <a href="#" class="dropdown-toggle d-flex align-items-center" data-toggle="dropdown">
         <div class="avatar sm circle mr-2">
           <img src="../../../assets/images/avatar.png" />
         </div>
-        <span>PK </span>
+        <span>{{user.firstname | capitalize}}</span>
       </a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#"><i class="fa fa-user mr-2"></i> Profile</a>
-        <a class="dropdown-item" href="#"><i class="fa fa-key mr-2"></i>Change Password</a>
-        <a class="dropdown-item" href="#"><i class="fa fa-cog mr-2"></i>Settings</a>
+      <div class="dropdown-menu right">
+        <a class="dropdown-item" [routerLink]="[url+'/profile']"><i class="fa fa-user mr-2"></i>Profile</a>
+        <a class="dropdown-item" [routerLink]="[url+'/change-password']"><i class="fa fa-key mr-2"></i>Change
+          Password</a>
+        <a class="dropdown-item" [routerLink]="[url+'/setting']"><i class="fa fa-cog mr-2"></i>Settings</a>
         <hr class="dropdown-divider" />
         <a class="dropdown-item" href="javascript:void(0)" (click)="onLogout()"><i
             class="fa fa-lock mr-2"></i>Logout</a>

@@ -1,4 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { IUser } from 'src/app/models/auth.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-shared-header',
@@ -7,9 +11,15 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SharedHeaderComponent implements OnInit {
   @Input() url: string = '/partner';
-  constructor() {}
+  user$: Observable<IUser>;
+  constructor(private router: Router, private auth: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.user$ = this.auth.user;
+  }
 
-  onLogout() {}
+  // logout
+  onLogout() {
+    this.auth.logout();
+  }
 }
