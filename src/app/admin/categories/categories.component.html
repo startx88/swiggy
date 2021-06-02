@@ -22,8 +22,7 @@
       </div>
       <div class="form-group">
         <label class="form-label">Category name (optional)</label>
-        <textarea ngModel type="text" #description="ngModel" name="description" class="form-control gray">
-        </textarea>
+        <textarea ngModel #description="ngModel" name="description" cols="3" class="form-control gray"></textarea>
       </div>
       <div class="form-group text-right">
         <app-button [disabled]="form.invalid" type="submit">
@@ -37,7 +36,7 @@
 
 <app-panel [type]="'white'" *ngIf="categories.length>0; else nodata">
   <div class="panel-title">
-    <h4 class="mb-0">Cuisines</h4>
+    <h4 class="mb-0">Categories</h4>
   </div>
   <section class="panel-body">
     <app-data-table (onDelete)="onDeleteHandler($event)" (onEdit)="onEditHandler($event)"

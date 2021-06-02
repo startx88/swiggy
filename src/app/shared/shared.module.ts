@@ -26,6 +26,7 @@ import { UploadComponent } from './components/upload/upload.component';
 import { CardComponent } from './UI/card/card.component';
 import { PanelComponent } from './UI/panel/panel.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
+import { TextareaComponent } from './components/textarea/textarea.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { DataTableComponent } from './components/data-table/data-table.component
     CardComponent,
     PanelComponent,
     DataTableComponent,
+    TextareaComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [
@@ -81,6 +83,7 @@ import { DataTableComponent } from './components/data-table/data-table.component
     CardComponent,
     PanelComponent,
     DataTableComponent,
+    TextareaComponent,
   ],
 })
 export class SharedModule {}

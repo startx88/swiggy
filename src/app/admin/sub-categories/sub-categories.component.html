@@ -1,1 +1,64 @@
-<app-page-title></app-page-title>
+<app-page-title>
+  <button type="button" class="btn btn-primary btn-xs" #modalButton data-toggle="modal" data-target="#add-subcategory">
+    Add Subcategory
+  </button>
+</app-page-title>
+
+<app-modal [id]="'add-subcategory'" (close)="onModalClose()">
+  <header class="header">Add Category</header>
+  <section class="body">
+    <form novalidate #form="ngForm" (ngSubmit)="addSubcategory()">
+      <div class="form-group" *ngIf="(category$ | async) as categories"
+        [ngClass]="{'is-valid': category.valid && category.touched,'is-invalid':category.invalid && category.touched}">
+        <label>Select category</label>
+        <select [ngModel]="defaultCategory" name="category" #category="ngModel" class="form-control gray"
+          [ngClass]="{'is-valid': category.valid && category.touched,'is-invalid':category.invalid && category.touched || isCatSelected}"
+          required>
+          <option value="select" disabled>-- Select category --</option>
+          <option *ngFor="let option of categories; let i=index" [value]="option.id">{{option.title}}</option>
+        </select>
+        <span class="invalid-feedback" *ngIf="isCatSelected">Please select category</span>
+        <span class="invalid-feedback">Category is required!</span>
+      </div>
+      <div class="form-group"
+        [ngClass]="{'is-valid': title.valid && title.touched,'is-invalid':title.invalid && title.touched}">
+        <label class="form-label">Title</label>
+        <input ngModel #title="ngModel" type="text" name="title" class="form-control gray" required
+          [ngClass]="{'is-valid': title.valid && title.touched,'is-invalid':title.invalid && title.touched}" />
+        <span class="invalid-feedback">Title is required!</span>
+      </div>
+      <div class="form-group">
+        <app-upload [single]="true" id="image" name="image" [img]="imagePath" (upload)="onUpload($event)">
+        </app-upload>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Category name (optional)</label>
+        <textarea ngModel #description="ngModel" name="description" cols="3" class="form-control gray"></textarea>
+      </div>
+      <div class="form-group text-right">
+        <app-button [disabled]="form.invalid " type="submit">
+          Add Category
+        </app-button>
+      </div>
+    </form>
+  </section>
+</app-modal>
+
+<!-- Container  -->
+<ng-container *ngIf="(subcats$ | async) as data">
+  <app-panel [type]="'white'" *ngIf="data.length>0; else nodata">
+    <div class="panel-title">
+      <h4 class="mb-0">Sub categories</h4>
+    </div>
+    <section class="panel-body">
+      <app-data-table (onDelete)="onDeleteHandler($event)" (onEdit)="onEditHandler($event)"
+        (onActivate)="onActivateHandler($event)" (onDeactivate)="onDeactivateHandler($event)" [data]="data">
+      </app-data-table>
+    </section>
+  </app-panel>
+  <ng-template #nodata>
+    <div class="no-data">
+      <img src="../../assets/images/no-data.png">
+    </div>
+  </ng-template>
+</ng-container>

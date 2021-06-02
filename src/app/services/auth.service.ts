@@ -64,22 +64,21 @@ export class AuthService {
     const user = JSON.parse(localStorage.getItem('user'));
     const expireTime = new Date(JSON.parse(localStorage.getItem('expireTime')));
     const token = localStorage.getItem('token');
-    if (!token) {
+    if (!token || new Date() > expireTime) {
       return;
     }
+
     if (token) {
-      if (expireTime > new Date()) {
-        this.autoLogout(expireTime.getTime() - new Date().getTime());
-      }
       this.loggedIn = true;
       this.user.next(user);
-      //this.redirection(user);
+      this.autoLogout(expireTime.getTime() - new Date().getTime());
     }
     return null;
   }
 
   // logout
   logout() {
+    this.user.next(null);
     this.loggedIn = false;
     localStorage.removeItem('token');
     localStorage.removeItem('user');

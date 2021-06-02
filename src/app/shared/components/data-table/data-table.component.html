@@ -37,8 +37,13 @@
               </ng-container>
             </ng-template>
             <ng-template #dateBlock>
-              <ng-container *ngIf="item.key==='insertAt';else otherBlock">
+              <ng-container *ngIf="item.key==='insertAt';else category">
                 <ng-container *ngTemplateOutlet="date; context:{$implicit:item.value}"></ng-container>
+              </ng-container>
+            </ng-template>
+            <ng-template #category>
+              <ng-container *ngIf="item.key==='category';else otherBlock">
+                <td>{{item.value.title}}</td>
               </ng-container>
             </ng-template>
             <ng-template #otherBlock>

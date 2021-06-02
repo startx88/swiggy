@@ -80,6 +80,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
       image: this.form.value.image || '',
       description: this.form.value.description,
     };
+
     if (this.isEdit) {
       this.categoryService
         .addUpdateCategory(data, this.editItem.id, 'UPDATED')

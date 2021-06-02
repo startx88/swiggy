@@ -1,7 +1,9 @@
 .form {
   &-group {
     &.is-invalid {
-      input {
+      input,
+      select,
+      textarea {
         border-color: rgba($danger, 0.3);
         background-color: rgba($danger, 0.3);
         @include placeholder($danger);
@@ -15,7 +17,9 @@
       }
     }
     &.is-valid {
-      input {
+      input,
+      select,
+      textarea {
         &:valid {
           border-color: rgba($success, 0.3);
           background-color: rgba($success, 0.3);
@@ -64,6 +68,10 @@
       &:focus {
         @include placeholder($primary);
       }
+    }
+
+    &.textarea {
+      min-height: 80px;
     }
   }
 
