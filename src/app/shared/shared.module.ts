@@ -27,6 +27,8 @@ import { CardComponent } from './UI/card/card.component';
 import { PanelComponent } from './UI/panel/panel.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
+import { TitleComponent } from './components/title/title.component';
+import { PincodeVaildatorDirective } from './directives/pincode-vaildator.directive';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { TextareaComponent } from './components/textarea/textarea.component';
     PanelComponent,
     DataTableComponent,
     TextareaComponent,
+    TitleComponent,
+    PincodeVaildatorDirective,
   ],
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [
@@ -78,12 +82,14 @@ import { TextareaComponent } from './components/textarea/textarea.component';
     SharedSidebarComponent,
     PageTitleComponent,
     CapitalizePipe,
-    LoginValidatorDirective,
     UploadComponent,
     CardComponent,
     PanelComponent,
     DataTableComponent,
     TextareaComponent,
+    TitleComponent,
+    LoginValidatorDirective,
+    PincodeVaildatorDirective,
   ],
 })
 export class SharedModule {}

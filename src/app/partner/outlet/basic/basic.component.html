@@ -1,0 +1,134 @@
+<app-title title="Basic information" titleText="Please fill restaurant basic information"></app-title>
+<ng-container [formGroup]="formGroup">
+  <div class="row" formGroupName="basic">
+    <div class="col-sm-6">
+      <div class="form-group"
+        [ngClass]="{'is-valid':name.valid && name.touched,'is-invalid':name.invalid && name.touched}">
+        <label class="form-label">Restaurant Name*</label>
+        <input formControlName="name" type="text" class="form-control gray" name="name"
+          [ngClass]="{'is-valid':name.valid && name.touched,'is-invalid':name.invalid && name.touched}" />
+        <span *ngIf="name.invalid" class="invalid-feedback">
+          Name is required!
+        </span>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group"
+        [ngClass]="{'is-valid':image.valid && image.touched,'is-invalid':image.invalid && image.touched}">
+        <app-upload [file]="isFile" (upload)="onSelectFile('image',$event)" label="Restaurant image" name="image"
+          [validator]="image">
+        </app-upload>
+        <span *ngIf="image.invalid" class="invalid-feedback">
+          Please select restaurant image!
+        </span>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label>Restaurant Type</label>
+        <div class=" d-flex">
+          <div class="form-radio mr-5 d-flex" *ngFor="let item of restaurantTypes; let i=index">
+            <input type="radio" name="restaurantType" [id]="item" formControlName="restaurantType" [value]="item" />
+            <label [for]="item" class="ml-2 primary">{{item}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group"
+        [ngClass]="{'is-valid':yearOfBirth.valid && yearOfBirth.touched,'is-invalid':yearOfBirth.invalid && yearOfBirth.touched}">
+        <label>When you started</label>
+        <input formControlName="yearOfBirth" type="date" class="form-control gray" name="yearOfBirth"
+          [ngClass]="{'is-valid':yearOfBirth.valid && yearOfBirth.touched,'is-invalid':yearOfBirth.invalid && yearOfBirth.touched}" />
+        <span *ngIf="yearOfBirth.invalid" class="invalid-feedback">
+          Please select restaurant image!
+        </span>
+      </div>
+
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group"
+        [ngClass]="{'is-valid':openTime.valid && openTime.touched,'is-invalid':openTime.invalid && openTime.touched}">
+        <label>Morning open timeings</label>
+        <input formControlName="openTime" type="time" class="form-control gray" name="openTime"
+          [ngClass]="{'is-valid':openTime.valid && openTime.touched,'is-invalid':openTime.invalid && openTime.touched}" />
+        <span *ngIf="openTime.invalid" class="invalid-feedback">
+          Please select open time!
+        </span>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group"
+        [ngClass]="{'is-valid':closeTime.valid && closeTime.touched,'is-invalid':closeTime.invalid && closeTime.touched}">
+        <label>Evening close timeings</label>
+        <input formControlName="closeTime" type="time" class="form-control gray" name="closeTime"
+          [ngClass]="{'is-valid':closeTime.valid && closeTime.touched,'is-invalid':closeTime.invalid && closeTime.touched}" />
+        <span *ngIf="closeTime.invalid" class="invalid-feedback">
+          Please select close time!
+        </span>
+      </div>
+    </div>
+    <div class="col-sm-12 mt-2">
+      <div class="d-flex justify-content-between align-items-center">
+        <app-title title="Owener detail" titleText="Please fill restaurant owner information."></app-title>
+        <app-button (click)="sameAsUser()">Same as registered user</app-button>
+      </div>
+      <div class="row" formGroupName="owner">
+        <div class="col-sm-6">
+          <div class="form-group"
+            [ngClass]="{'is-valid':owenerName.valid && owenerName.touched,'is-invalid':owenerName.invalid && owenerName.touched}">
+            <label>Owener name</label>
+            <input formControlName="name" type="text" class="form-control gray" name="name"
+              [ngClass]="{'is-valid':owenerName.valid && owenerName.touched,'is-invalid':owenerName.invalid && owenerName.touched}" />
+            <span *ngIf="owenerName.invalid" class="invalid-feedback">
+              Owner name is required!
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group"
+            [ngClass]="{'is-valid':owenerMobile.valid && owenerMobile.touched,'is-invalid':owenerMobile.invalid && owenerMobile.touched}">
+            <label>Owener mobile</label>
+            <input formControlName="mobile" type="text" class="form-control gray" name="mobile"
+              [ngClass]="{'is-valid':owenerMobile.valid && owenerMobile.touched,'is-invalid':owenerMobile.invalid && owenerMobile.touched}" />
+            <span *ngIf="owenerMobile.invalid" class="invalid-feedback">
+              Owner mobile is required!
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="form-group"
+            [ngClass]="{'is-valid':owenerEmail.valid && owenerEmail.touched,'is-invalid':owenerEmail.invalid && owenerEmail.touched}">
+            <label>Owener email</label>
+            <input formControlName="email" type="email" class="form-control gray" name="email"
+              [ngClass]="{'is-valid':owenerEmail.valid && owenerEmail.touched,'is-invalid':owenerEmail.invalid && owenerEmail.touched}" />
+            <span *ngIf="owenerEmail.invalid" class="invalid-feedback">
+              Owner email is required!
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 mt-2">
+      <app-title title=" Contact details" titleText="Please fill contact detail">
+      </app-title>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group"
+        [ngClass]="{'is-valid':mobile.valid && mobile.touched,'is-invalid':mobile.invalid && mobile.touched}">
+        <label>Mobile</label>
+        <input formControlName="mobile" type="text" class="form-control gray" name="mobile"
+          [ngClass]="{'is-valid':mobile.valid && mobile.touched,'is-invalid':mobile.invalid && mobile.touched}" />
+        <span *ngIf="mobile.invalid" class="invalid-feedback">
+          Mobile is required!
+        </span>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label>Landline</label>
+        <input formControlName="landline" type="text" class="form-control gray" name="landline" />
+      </div>
+    </div>
+  </div>
+</ng-container>

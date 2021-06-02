@@ -1,1 +1,63 @@
 <app-page-title></app-page-title>
+<div class="row">
+  <div class="col-sm-4">
+    <app-title class="mb-2" title="Profile infrmation" titleText=""></app-title>
+    <form class="form-row" [formGroup]="formGroup">
+      <div class="form-group col-6">
+        <label>First Name</label>
+        <input type="text" class="form-control gray" formControlName="firstname" />
+      </div>
+      <div class="form-group col-6">
+        <label>Last Name</label>
+        <input type="text" class="form-control gray" formControlName="lastname" />
+      </div>
+      <div class="form-group col-6">
+        <label>Email</label>
+        <input type="text" class="form-control gray" formControlName="lastname" />
+      </div>
+      <div class="form-group col-6">
+        <label>Mobile</label>
+        <input type="text" class="form-control gray" formControlName="lastname" />
+      </div>
+
+    </form>
+  </div>
+  <div class="col-sm-4">
+    <div class="title">
+      <h6 class="design">Update profile pic</h6>
+    </div>
+
+    <form>
+      <div class="form-group">
+        <label>Avatar</label>
+        <input type="password" class="form-control gray" />
+      </div>
+      <div class='text-right'>
+        <button class="btn btn-primary btn-sm">Change</button>
+      </div>
+    </form>
+    <hr />
+    <div class="title">
+      <h6 class="design">Change password</h6>
+    </div>
+
+    <form class='form-row'>
+      <div class="form-group  col-12">
+        <label>Current password</label>
+        <input type="password" class="form-control gray" />
+      </div>
+
+      <div class="form-group col">
+        <label>New password</label>
+        <input type="password" class="form-control gray" />
+      </div>
+      <div class="form-group  col">
+        <label>Confirm password</label>
+        <input type="password" class="form-control gray" />
+      </div>
+      <div class='col-12 text-right'>
+        <button class="btn btn-primary btn-sm">Change</button>
+      </div>
+    </form>
+  </div>
+</div>

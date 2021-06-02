@@ -1,0 +1,86 @@
+<div class="row mt-3" [formGroup]="formGroup">
+  <ng-container formGroupName="buisiness">
+    <div class="col-sm-12">
+      <app-title title="Manager detail" titleText="Plese fill manager detail"></app-title>
+      <div class="row" formGroupName="manager">
+        <div class="col-sm-6">
+          <div class="form-group"
+            [ngClass]="{'is-valid':managerName.valid && managerName.touched,'is-invalid':managerName.invalid && managerName.touched}">
+            <label>Manager name*</label>
+            <input formControlName="name" type="text" class="form-control gray" name="name"
+              [ngClass]="{'is-valid':managerName.valid && managerName.touched,'is-invalid':managerName.invalid && managerName.touched}" />
+            <span *ngIf="managerName.invalid" class="invalid-feedback">
+              Manager name is required!
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group"
+            [ngClass]="{'is-valid':managerMobile.valid && managerMobile.touched,'is-invalid':managerMobile.invalid && managerMobile.touched}">
+            <label>Manager mobile*</label>
+            <input formControlName="mobile" type="text" class="form-control gray" name="mobile"
+              [ngClass]="{'is-valid':managerMobile.valid && managerMobile.touched,'is-invalid':managerMobile.invalid && managerMobile.touched}" />
+            <span *ngIf="managerMobile.invalid" class="invalid-feedback">
+              Manager mobile is required!
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="form-group"
+            [ngClass]="{'is-valid':managerEmail.valid && managerEmail.touched,'is-invalid':managerEmail.invalid && managerEmail.touched}">
+            <label>Manager email*</label>
+            <input formControlName="email" type="email" class="form-control gray" name="email"
+              [ngClass]="{'is-valid':managerEmail.valid && managerEmail.touched,'is-invalid':managerEmail.invalid && managerEmail.touched}" />
+            <span *ngIf="managerEmail.invalid" class="invalid-feedback">
+              Manager email is required!
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 mt-2">
+      <app-title title="Establishment type" titleText="Please fill serving cuisines for restaurant."></app-title>
+      <div class="d-flex flex-wrap mb-2">
+        <div class="form-radio mr-5 d-flex mb-2" *ngFor="let item of servingType; let i=index">
+          <input type="radio" name="servingType" [id]="item" formControlName="servingType" [value]="item" required />
+          <label ngPreserveWhitespaces [for]="item" class="ml-2 primary">
+            {{item}}
+            <small *ngIf="item=='dine-in'">
+              Select when you don't want register online ordering.
+            </small>
+            <small *ngIf="item=='delivery'">
+              Select when you don't have facility to dine-in.
+            </small>
+            <small *ngIf="item=='both'">
+              delivery and dine-in both available.
+            </small>
+          </label>
+        </div>
+      </div>
+      <app-title title="Cuisines" titleText="Please fill serving cuisines for restaurant."></app-title>
+      <div class="cuisines d-flex flex-wrap mb-3">
+        <div class="form-checkbox mr-3 mb-2 mw-150"
+          *ngFor="let cuisine of (cuisines$ | async) as cuisines; let i=index">
+          <input type="checkbox" [id]="'c-'+cuisine.id" [name]="cuisine.title" [value]="cuisine.title"
+            (click)="onAddValue('cuisines',$event)" />
+          <label [for]="'c-'+cuisine.id" class="ml-2 primary">{{cuisine.title}}</label>
+        </div>
+      </div>
+      <app-title title="Week days" titleText="Please select days to open restaurant"></app-title>
+      <div class="cuisines d-flex flex-wrap mb-4 mt-1">
+        <div class="form-checkbox mr-3 mb-2 mw-150" *ngFor="let day of weekDays; let i=index">
+          <input type="checkbox" [id]="'d-'+day" [name]="day" [value]="day"
+            (click)="onAddValue('daysOpenInWeek',$event)" />
+          <label [for]="'d-'+day" class="ml-2 primary">{{day}}</label>
+        </div>
+      </div>
+      <app-title title="Other infrmation" titleText="Please select feature if you want."></app-title>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Cost for 2 people</label>
+        <input type="text" class="form-control gray" formControlName="costFor" name="costFor" />
+      </div>
+    </div>
+  </ng-container>
+</div>

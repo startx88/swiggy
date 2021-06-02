@@ -59,14 +59,14 @@
       &:before {
         top: 0;
         left: 0;
-        border: 1px solid $radio-checkbox-border-color;
+        background-color: $radio-checkbox-border-color;
         width: 18px;
         height: 18px;
       }
       &:after {
         left: 4px;
         top: 4px;
-        background-color: $radio-checkbox-active-color;
+        //background-color: $radio-checkbox-active-color;
         opacity: 0;
         width: 10px;
         height: 10px;

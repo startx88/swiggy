@@ -13,6 +13,10 @@ import { WelcomeComponent } from './welcome/welcome.component';
 
 import { SharedModule } from '../shared/shared.module';
 import { UsersComponent } from './users/users.component';
+import { AddOutletComponent } from './outlet/add-outlet/add-outlet.component';
+import { BasicComponent } from './outlet/basic/basic.component';
+import { BusinessComponent } from './outlet/business/business.component';
+import { AddressComponent } from './outlet/address/address.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,10 @@ import { UsersComponent } from './users/users.component';
     OutletComponent,
     WelcomeComponent,
     UsersComponent,
+    AddOutletComponent,
+    BasicComponent,
+    BusinessComponent,
+    AddressComponent,
   ],
   imports: [CommonModule, SharedModule, PartnerRouterModule],
 })

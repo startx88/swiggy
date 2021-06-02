@@ -1,0 +1,81 @@
+<app-title title="Restaurant address" titleText="Please fill address for your restaurant."></app-title>
+<div class="row" [formGroup]="formGroup">
+  <ng-container formGroupName="addresses">
+    <div class="col-md-12">
+      <div class="form-group" [ngClass]="{'is-valid':add.valid && add.touched,'is-invalid':add.invalid && add.touched}">
+        <label>Address</label>
+        <input type="text" class="form-control gray" name="address" formControlName="address"
+          [ngClass]="{'is-valid':add.valid && add.touched,'is-invalid':add.invalid && add.touched}" />
+        <span class="invalid-feedback">
+          Address is required!
+        </span>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group"
+        [ngClass]="{'is-valid':state.valid && state.touched,'is-invalid':state.invalid && state.touched}">
+        <label>State</label>
+        <input type="text" class="form-control gray" name="state" formControlName="state"
+          [ngClass]="{'is-valid':state.valid && state.touched,'is-invalid':state.invalid && state.touched}" />
+        <span class="invalid-feedback">
+          State is required!
+        </span>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group"
+        [ngClass]="{'is-valid':city.valid && city.touched,'is-invalid':city.invalid && city.touched}">
+        <label>City</label>
+        <input type="text" class="form-control gray" name="city" formControlName="city"
+          [ngClass]="{'is-valid':city.valid && city.touched,'is-invalid':city.invalid && city.touched}" />
+        <span class="invalid-feedback">
+          City is required!
+        </span>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group"
+        [ngClass]="{'is-valid':landmark.valid && landmark.touched,'is-invalid':landmark.invalid && landmark.touched}">
+        <label>Landmark</label>
+        <input type="text" class="form-control gray" name="landmark" formControlName="landmark"
+          [ngClass]="{'is-valid':landmark.valid && landmark.touched,'is-invalid':landmark.invalid && landmark.touched}" />
+        <span class="invalid-feedback">
+          Landmark is required!
+        </span>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group"
+        [ngClass]="{'is-valid':pincode.valid && pincode.touched,'is-invalid':pincode.invalid && pincode.touched}">
+        <label>pincode</label>
+        <input type="text" class="form-control gray" appPincodeVaildator name="pincode" formControlName="pincode"
+          [ngClass]="{'is-valid':pincode.valid && pincode.touched,'is-invalid':pincode.invalid && pincode.touched}" />
+        <span *ngIf="pincode.errors?.validate?.invalid" class="invalid-feedback">Plese enter valid pincode (alphabets
+          are not allowed)</span>
+        <span *ngIf="pincode.errors?.required" class="invalid-feedback">
+          Pincode is required!
+        </span>
+      </div>
+    </div>
+    <ng-container formGroupName="location">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Latitude </label>
+          <input type="text" class="form-control gray" name="lat" formControlName="lat" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Longitude</label>
+          <input type="text" class="form-control gray" name="lng" formControlName="lng" />
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="google-map col-sm-12">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.938665680998!2d77.43293581549524!3d28.631600290873095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cee30733be30b%3A0x8cc928a4c03f84b2!2sMore%20Store%20Supermarket!5e0!3m2!1sen!2sin!4v1622261777515!5m2!1sen!2sin"
+        style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </ng-container>
+</div>

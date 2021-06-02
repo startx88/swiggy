@@ -1,1 +1,19 @@
 <app-page-title></app-page-title>
+
+<div class="row">
+  <div class="col-sm-6"></div>
+  <div class="col-sm-6">
+    <h3 class="mb-3">Add outlet</h3>
+    <form (ngSubmit)="addOutlet()" [ngSwitch]="step" [formGroup]="form">
+      <app-basic [formGroup]="form" *ngSwitchCase="1"></app-basic>
+      <app-business (selected)="onCheckboxChange($event)" [formGroup]="form" *ngSwitchCase="2"></app-business>
+      <app-address [formGroup]="form" *ngSwitchCase="3"></app-address>
+      <div class="form-group text-right mt-3">
+        <button type="button" (click)="onPrev()" *ngIf="!(step===1)" class="btn btn-primary btn-xs">Prev</button>
+        <button type="button" (click)="onNext()" *ngIf="!(step===3)"
+          class="btn btn-primary btn-xs ml-2 mr-2">Next</button>
+        <button type="submit" *ngIf="step===3" class="btn btn-primary btn-xs ml-2 mr-2">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

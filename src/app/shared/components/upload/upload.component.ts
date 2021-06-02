@@ -15,9 +15,11 @@ import {
 })
 export class UploadComponent implements OnInit {
   @Input() label: string = 'Select file';
+  @Input() file: File;
   @Input() single: boolean = false;
   @Input() optional: boolean = false;
   @Input() img: string;
+  @Input() validator: any;
   @Output() upload = new EventEmitter();
   constructor() {}
 
