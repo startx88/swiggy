@@ -14,7 +14,14 @@ import {
 })
 export class DataTableComponent implements OnInit {
   @Input() data: any[] = [];
-  @Input() hideColumns: string[] = ['createdAt', 'updatedAt', 'id'];
+  @Input() hideColumns: string[] = [
+    'createdAt',
+    'updatedAt',
+    'id',
+    'token',
+    'password',
+    'tokenExpire',
+  ];
   @Input() isAction: boolean = true;
   @Input() limit: number = 5;
   @Output() onActivate = new EventEmitter<string>();
