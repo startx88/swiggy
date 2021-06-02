@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IOutlet } from 'src/app/models/outlet.model';
+import { IMenu, IOutlet } from 'src/app/models/outlet.model';
 import { OutletService } from 'src/app/services/outlet.service';
 
 @Component({
@@ -10,10 +10,16 @@ import { OutletService } from 'src/app/services/outlet.service';
 })
 export class DetailComponent implements OnInit {
   outlet$: Observable<IOutlet>;
+  @Output() editMenu = new EventEmitter<IMenu>();
   constructor(private outletService: OutletService) {}
 
   ngOnInit(): void {
     // load outlet
     this.outlet$ = this.outletService.loadPartnerOutlet();
+  }
+
+  // edit menu
+  onEditMenu(menu: IMenu) {
+    this.editMenu.emit(menu);
   }
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { IOutlet } from 'src/app/models/outlet.model';
+import { OutletService } from 'src/app/services/outlet.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +10,10 @@ import { Component, OnInit } from '@angular/core';
   host: { class: 'flex' },
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  outlets$: Observable<IOutlet[]>;
+  constructor(private outletService: OutletService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.outlets$ = this.outletService.loadOutlets();
+  }
 }

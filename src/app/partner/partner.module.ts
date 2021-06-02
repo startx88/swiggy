@@ -18,6 +18,7 @@ import { BasicComponent } from './outlet/basic/basic.component';
 import { BusinessComponent } from './outlet/business/business.component';
 import { AddressComponent } from './outlet/address/address.component';
 import { DetailComponent } from './outlet/detail/detail.component';
+import { AddMenuComponent } from './outlet/add-menu/add-menu.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { DetailComponent } from './outlet/detail/detail.component';
     BusinessComponent,
     AddressComponent,
     DetailComponent,
+    AddMenuComponent,
   ],
   imports: [CommonModule, SharedModule, PartnerRouterModule],
 })

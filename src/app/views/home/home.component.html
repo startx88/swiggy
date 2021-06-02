@@ -1,6 +1,9 @@
-<app-hero>
+<app-hero></app-hero>
 
-</app-hero>
 <div class="container mb-4">
-  <p>home works!</p>
+  <div class="row" *ngIf="(outlets$ | async) as outlets">
+    <div class="col-sm-4" *ngFor="let outlet of outlets">
+      {{outlet.name}}
+    </div>
+  </div>
 </div>
