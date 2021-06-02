@@ -1,0 +1,70 @@
+<div class="outlet-detail" *ngIf="(outlet$|async) as outlet">
+  <div class="cover mb-5">
+    <img [src]="outlet.image" [alt]="outlet.name" />
+    <div class="cover-pic d-flex align-items-center">
+      <div class="avatar ml circle mr-2">
+        <img src="../../../assets/images/avatar.png" />
+      </div>
+      <h5 class="mb-0 mt-4 pt-1">{{outlet.name}} ({{outlet.restaurantType}})
+        <small class="xs mt-0">
+          {{outlet.mobile}}
+        </small>
+      </h5>
+    </div>
+  </div>
+
+  <div class="mt-2 row">
+    <div class="col">
+
+      <div class="detail mt-3">
+        <h6><i class="fa fa-user mr-1"></i>Owner detail</h6>
+        <ul class="list">
+          <li>{{outlet.owner.name}}</li>
+          <li>{{outlet.owner.email}}</li>
+          <li>{{outlet.owner.mobile}}</li>
+        </ul>
+      </div>
+
+      <div class="detail mt-3">
+        <h6><i class="fa fa-building mr-1"></i>Manager detail</h6>
+        <ul class="list">
+          <li>{{outlet.manager.name}}</li>
+          <li>{{outlet.manager.email}}</li>
+          <li>{{outlet.manager.mobile}}</li>
+        </ul>
+      </div>
+      <div class="detail mt-3">
+        <h6><i class="fa fa-calendar mr-1"></i>Open in week</h6>
+        <ul class="list">
+          <li *ngFor="let day of outlet.daysOpenInWeek">{{day}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="detail mt-3">
+        <h6><i class="fa fa-calendar mr-1"></i>Outlet open for</h6>
+        <p class="pl-4 mb-1">your are providing</p>
+        <ul class="list" *ngIf="outlet.servingType==='both'">
+          <li>Dine for customer's</li>
+          <li>Delivery for customer's</li>
+        </ul>
+      </div>
+      <div class="detail mt-3">
+        <h6><i class="fa fa-calendar mr-1"></i>Serving food</h6>
+        <ul class="list">
+          <li *ngFor="let day of outlet.cuisines">{{day}}</li>
+        </ul>
+      </div>
+      <div class="detail mt-3">
+        <h6><i class="fa fa-map-marker mr-1"></i> Address</h6>
+        <address style="line-height:1.5em">
+          {{outlet.address.address}}<br />
+          <span class="d-flex">State: {{outlet.address.state}}</span>
+          <span class="d-flex">City: {{outlet.address.city}}</span>
+          <span class="d-flex"> Pincode: {{outlet.address.pincode}}</span>
+        </address>
+      </div>
+
+    </div>
+  </div>
+</div>

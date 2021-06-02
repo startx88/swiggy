@@ -1,0 +1,12 @@
+.cover {
+  position: relative;
+  border-radius: 5px;
+  img {
+    border-radius: 5px;
+  }
+  &-pic {
+    position: absolute;
+    bottom: -50px;
+    left: 50px;
+  }
+}

@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ICuisine } from 'src/app/models/cuisine.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { CuisineService } from 'src/app/services/cuisine.service';
 
 @Component({
@@ -12,8 +13,8 @@ import { CuisineService } from 'src/app/services/cuisine.service';
 export class BusinessComponent implements OnInit {
   @Input() formGroup: FormGroup;
   @Output() selected = new EventEmitter<{ key: string; event: MouseEvent }>();
-
   cuisines$: Observable<ICuisine[]>;
+  subscription: Subscription;
   servingType: string[] = ['dine-in', 'delivery', 'both'];
   weekDays: string[] = [
     'Monday',
@@ -24,7 +25,10 @@ export class BusinessComponent implements OnInit {
     'Saturday',
     'Sunday',
   ];
-  constructor(private cuisineService: CuisineService) {}
+  constructor(
+    private cuisineService: CuisineService,
+    private authSrv: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.cuisines$ = this.cuisineService.getCuisines();
@@ -34,6 +38,17 @@ export class BusinessComponent implements OnInit {
     this.selected.emit({ key, event });
   }
 
+  sameAsUser() {
+    this.subscription = this.authSrv.user.subscribe((user) => {
+      this.formGroup.get('buisiness').patchValue({
+        manager: {
+          name: user.firstname + ' ' + user.lastname,
+          email: user.email,
+          mobile: user.mobile,
+        },
+      });
+    });
+  }
   get servingTypes() {
     return this.formGroup.get('buisiness').get('servingType');
   }

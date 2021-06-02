@@ -6,6 +6,12 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { IOutlet } from 'src/app/models/outlet.model';
+import { AlertService } from 'src/app/services/alert.service';
+import { OutletService } from 'src/app/services/outlet.service';
+import { onTimeChange } from 'src/app/utility/data';
+import { Color } from 'src/app/utility/enums/color.enum ';
 
 @Component({
   selector: 'app-outlet',
@@ -17,7 +23,12 @@ export class OutletComponent implements OnInit {
   form: FormGroup;
   lat: string;
   lan: string;
-  constructor(private fb: FormBuilder) {}
+
+  constructor(
+    private fb: FormBuilder,
+    private alert: AlertService,
+    private outletService: OutletService
+  ) {}
 
   ngOnInit(): void {
     // form initialise
@@ -39,8 +50,8 @@ export class OutletComponent implements OnInit {
           ],
         ],
         landline: [''],
-        openTime: ['', Validators.required],
-        closeTime: ['', Validators.required],
+        openTime: ['10:30', Validators.required],
+        closeTime: ['22:30', Validators.required],
         owner: this.fb.group({
           name: ['', Validators.required],
           email: ['', [Validators.required, Validators.email]],
@@ -117,7 +128,25 @@ export class OutletComponent implements OnInit {
   // add outlet
   addOutlet() {
     if (this.form.invalid) return;
-    console.log(this.form.value);
+    const data = {
+      ...this.form.value.basic,
+      openTime: onTimeChange(this.form.value.basic.openTime),
+      closeTime: onTimeChange(this.form.value.basic.closeTime),
+      ...this.form.value.buisiness,
+      address: this.form.value.addresses,
+    };
+
+    // hit service
+    this.outletService.addOutlet(data).subscribe(
+      () => {
+        this.form.reset();
+        this.displayMessage(
+          Color.danger,
+          'You have successfully added your outlet!'
+        );
+      },
+      ({ message }) => this.displayMessage(Color.danger, message)
+    );
   }
 
   // previout or next
@@ -131,9 +160,26 @@ export class OutletComponent implements OnInit {
       this.form.controls['basic'].markAllAsTouched();
       return;
     }
+    if (this.step === 2 && this.form.controls['buisiness'].invalid) {
+      this.form.controls['buisiness'].markAllAsTouched();
+      return;
+    }
+    if (this.step === 3 && this.form.controls['addresses'].invalid) {
+      this.form.controls['addresses'].markAllAsTouched();
+      return;
+    }
 
     if (this.step < 3) {
       this.step++;
     }
+  }
+
+  // error message
+  displayMessage(color: Color, message: string) {
+    this.alert.alertShow({
+      color: color,
+      message: message,
+      visible: true,
+    });
   }
 }

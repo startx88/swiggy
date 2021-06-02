@@ -1,7 +1,12 @@
 <div class="row mt-3" [formGroup]="formGroup">
   <ng-container formGroupName="buisiness">
     <div class="col-sm-12">
-      <app-title title="Manager detail" titleText="Plese fill manager detail"></app-title>
+      <div class="d-flex align-items-center justify-content-between">
+        <app-title title="Manager detail" titleText="Plese fill manager detail">
+
+        </app-title>
+        <app-button (click)="sameAsUser()">Same as registered user</app-button>
+      </div>
       <div class="row" formGroupName="manager">
         <div class="col-sm-6">
           <div class="form-group"

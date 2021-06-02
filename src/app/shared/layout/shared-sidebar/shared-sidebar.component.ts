@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IUser } from 'src/app/models/auth.model';
-import { IMenu } from 'src/app/models/menu.modal';
+import { NavMenu } from 'src/app/models/menu.model';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./shared-sidebar.component.scss'],
 })
 export class SharedSidebarComponent implements OnInit {
-  @Input() menus: IMenu[];
+  @Input() menus: NavMenu[];
   @Input() url: string = '/partner';
   user$: Observable<IUser>;
   constructor(private auth: AuthService) {}

@@ -23,8 +23,8 @@ export class AlertService {
     this.visible = true;
     this.alert.next(alert);
     this.clearTimer = setTimeout(() => {
-      // this.visible = false;
-      // this.alert.next(null);
+      this.visible = false;
+      this.alert.next(null);
     }, timer);
   }
   // close handler

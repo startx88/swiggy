@@ -15,8 +15,8 @@
     <div class="col-sm-6">
       <div class="form-group"
         [ngClass]="{'is-valid':image.valid && image.touched,'is-invalid':image.invalid && image.touched}">
-        <app-upload [file]="isFile" (upload)="onSelectFile('image',$event)" label="Restaurant image" name="image"
-          [validator]="image">
+        <app-upload [single]="true" [file]="isFile" (upload)="onSelectFile('image',$event)" label="Restaurant image"
+          name="image" [validator]="image">
         </app-upload>
         <span *ngIf="image.invalid" class="invalid-feedback">
           Please select restaurant image!

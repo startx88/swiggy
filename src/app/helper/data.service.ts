@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IMenu } from '../models/menu.modal';
+import { NavMenu } from '../models/menu.model';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +26,7 @@ export class DataService {
   registerdRestaurant: string = 'Register restaurant';
   totalRecipes: string = 'Total recipes';
   satisfyUser: string = 'Satisfy user';
-  adminMenu: IMenu[] = [
+  adminMenu: NavMenu[] = [
     { id: '001', name: 'Dashbaord', icon: 'th', url: '/dashboard' },
     {
       id: '002',
@@ -60,7 +60,7 @@ export class DataService {
     },
     { id: '006', name: 'Users', icon: 'long-arrow-right', url: '/users' },
   ];
-  partnerMenu: IMenu[] = [
+  partnerMenu: NavMenu[] = [
     { id: '001', name: 'Dashbaord', icon: 'th', url: '/dashboard' },
     { id: '002', name: 'Outlet', icon: 'building ', url: '/outlet' },
     { id: '004', name: 'Recipes', icon: 'coffee', url: '/recipes' },
