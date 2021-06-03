@@ -1,7 +1,7 @@
 export interface IMenu {
   id?: string;
   restaurant: string;
-  name: string;
+  title: string;
   slug?: string;
   price?: number;
   offer?: number;

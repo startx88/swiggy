@@ -11,7 +11,9 @@ import { MenuService } from './menu.service';
 })
 export class OutletService {
   outlets: IOutlet[];
+  outlet: IOutlet;
   outletsChange = new Subject<IOutlet[]>();
+  outletChange = new Subject<IOutlet>();
   url = environment.apiUrl + '/outlet';
   constructor(private http: HttpClient, private menuService: MenuService) {}
 
@@ -32,6 +34,8 @@ export class OutletService {
               );
             });
         }
+        this.outlets = outlets;
+        this.outletsChange.next(this.outlets.slice());
         return outlets;
       })
     );
@@ -66,11 +70,11 @@ export class OutletService {
     return this.http.get<IOutlet>(this.url + '/me').pipe(
       catchError(this.errorHandler),
       map((response: any) => {
-        let outlets = response;
-        this.menuService.getMenusByOutlet(outlets.id).subscribe((menus) => {
-          outlets.menu = menus.filter((x) => x.restaurant == outlets.id);
+        let outlet = response;
+        this.menuService.getMenusByOutlet(outlet.id).subscribe((menus) => {
+          outlet.menu = menus.filter((data) => data.restaurant == outlet.id);
         });
-        return outlets;
+        return outlet;
       })
     );
   }

@@ -25,10 +25,7 @@ export class OutletComponent implements OnInit {
   lat: string;
   lan: string;
   form: FormGroup;
-  menuForm: FormGroup;
   outlet: IOutlet;
-  @ViewChild(ModalComponent) modal: ModalComponent;
-  @ViewChild('modalButton') modalOpenButton: ElementRef;
 
   constructor(
     private fb: FormBuilder,
@@ -41,11 +38,7 @@ export class OutletComponent implements OnInit {
     this.outletService.loadPartnerOutlet().subscribe((outlet) => {
       this.outlet = outlet;
     });
-    this.menuForm = this.fb.group({
-      title: ['', Validators.required],
-      price: [''],
-      offer: [''],
-    });
+
     // form initialise
     this.form = this.fb.group({
       basic: this.fb.group({
@@ -119,28 +112,6 @@ export class OutletComponent implements OnInit {
         }),
       }),
     });
-  }
-
-  // close modal
-  onCloseModal() {
-    this.menuForm.reset();
-  }
-
-  onEditMenu(menu: IMenu) {
-    console.log(menu);
-  }
-
-  // add menu
-  onAddMenu() {
-    if (this.menuForm.invalid) return;
-    console.log(this.menuForm.value);
-    this.menuService.addMenu(this.outlet.id, this.menuForm.value).subscribe(
-      () => {
-        this.menuForm.reset();
-        this.displayMessage(Color.success, 'Menu added successfully');
-      },
-      ({ message }) => this.displayMessage(Color.danger, message)
-    );
   }
 
   // checked item selected

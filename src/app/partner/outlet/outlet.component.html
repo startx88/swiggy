@@ -1,27 +1,8 @@
-<app-page-title>
-  <button type="button" data-toggle="modal" #modalButton data-target="#add-menu" class="btn btn-primary btn-xs">Add
-    menu</button>
-</app-page-title>
-
-
-<app-modal [id]="'add-menu'" (close)="onCloseModal()">
-  <ng-container class="header">
-    <h5>Add outlet menu</h5>
-  </ng-container>
-  <ng-container class="body">
-    <form (ngSubmit)="onAddMenu()" [formGroup]="menuForm">
-      <app-add-outlet-menu [formGroup]="menuForm"></app-add-outlet-menu>
-      <div class="form-group text-right">
-        <button type="submit" class="btn btn-primary">Add Menu</button>
-      </div>
-    </form>
-  </ng-container>
-</app-modal>
-
+<app-page-title></app-page-title>
 
 <div class="row">
   <div class="col-sm-6">
-    <app-outlet-detail (editMenu)="onEditMenu($event)"></app-outlet-detail>
+    <app-outlet-detail></app-outlet-detail>
   </div>
   <div class="col-sm-6">
     <h3 class="mb-3">Add outlet</h3>
