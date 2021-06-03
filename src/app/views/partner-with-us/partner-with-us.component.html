@@ -13,34 +13,49 @@
       </div>
     </div>
     <div class="col-sm-5 offset-sm-1">
-      <form [formGroup]="formGroup" class="partner-form">
+      <form [formGroup]="form" class="partner-form">
         <h4 class="text-white">Partner registration</h4>
         <div class="row mt-3">
           <div class="col form-group">
             <input type="text" formControlName="firstname" placeholder="First name" name="firstname"
-              class="form-control white" />
+              class="form-control white"
+              [ngClass]="{'is-valid':firstname.valid && firstname.touched,'is-invalid':firstname.invalid && firstname.touched}" />
+            <span class="invalid-feedback">First name is required</span>
           </div>
           <div class="col form-group">
             <input type="text" formControlName="lastname" placeholder="Last name" name="lastname"
-              class="form-control white" />
+              class="form-control white"
+              [ngClass]="{'is-valid':lastname.valid && lastname.touched,'is-invalid':lastname.invalid && lastname.touched}" />
+            <span class="invalid-feedback">Last name is required</span>
 
           </div>
           <div class="col-12 form-group">
-            <input type="email" formControlName="email" placeholder="Email" name="email" class="form-control white" />
+            <input type="email" formControlName="email" placeholder="Email" name="email" class="form-control white"
+              [ngClass]="{'is-valid':email.valid && email.touched,'is-invalid':email.invalid && email.touched}" />
+            <span class="invalid-feedback">Email is required</span>
           </div>
           <div class="col form-group">
             <input type="password" formControlName="password" placeholder="************" name="password"
-              class="form-control white" />
+              class="form-control white"
+              [ngClass]="{'is-valid':password.valid && password.touched,'is-invalid':password.invalid && password.touched}" />
+            <span class="invalid-feedback">Password is required</span>
           </div>
           <div class="col form-group">
             <input type="password" formControlName="confirmPassword" placeholder="************" name="confirmPassword"
-              class="form-control " />
+              class="form-control "
+              [ngClass]="{'is-valid': confirmPasswordError && confirm.touched,'is-invalid':!confirmPasswordError && confirm.touched}" />
+
+            <span class="invalid-feedback" *ngIf="confirmPasswordError">Conirm password should be identical to
+              password</span>
+            <span class="invalid-feedback" *ngIf="confirm.invalid">Confirm password is required</span>
           </div>
           <div class="col-12 form-group">
-            <input type="text" formControlName="mobile" placeholder="Mobile" name="mobile" class="form-control white" />
+            <input type="text" formControlName="mobile" placeholder="Mobile" name="mobile" class="form-control white"
+              [ngClass]="{'is-valid':mobile.valid && mobile.touched,'is-invalid':mobile.invalid && mobile.touched}" />
+            <span class="invalid-feedback">First name is required</span>
 
           </div>
-          <div class="col-12 text-right"><button class="btn btn-primary btn-xs">Register</button></div>
+          <div class="col-12 text-center"><button class="btn btn-primary btn-sm">Register</button></div>
         </div>
       </form>
     </div>
