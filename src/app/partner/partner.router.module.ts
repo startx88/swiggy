@@ -20,7 +20,7 @@ const partnerRoutes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'outlet', component: OutletComponent },
       { path: 'orders', component: PartnerOrderComponent },
-      { path: 'recipes', component: PartnerRecipeComponent },
+      { path: 'products', component: PartnerRecipeComponent },
       { path: 'users', component: UsersComponent },
       { path: 'welcome', component: WelcomeComponent },
       { path: 'profile', component: PartnerProfileComponent },
