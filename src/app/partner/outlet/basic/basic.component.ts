@@ -16,7 +16,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./basic.component.scss'],
 })
 export class BasicComponent implements OnInit, OnDestroy {
-  restaurantTypes: string[] = ['veg', 'nonveg'];
+  restaurantTypes: string[] = ['veg', 'nonveg', 'both'];
   @Input() formGroup: FormGroup;
   @ViewChild('file') file: ElementRef;
   selectedFile: Blob;
@@ -58,6 +58,9 @@ export class BasicComponent implements OnInit, OnDestroy {
   }
   get image() {
     return this.formGroup.get('basic').get('image');
+  }
+  get email() {
+    return this.formGroup.get('basic').get('email');
   }
   get restaurantType() {
     return this.formGroup.get('basic').get('restaurantType');

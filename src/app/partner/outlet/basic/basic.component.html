@@ -44,33 +44,11 @@
           Please select restaurant image!
         </span>
       </div>
+    </div>
 
-    </div>
-    <div class="col-sm-6">
-      <div class="form-group"
-        [ngClass]="{'is-valid':openTime.valid && openTime.touched,'is-invalid':openTime.invalid && openTime.touched}">
-        <label>Morning open timeings</label>
-        <input formControlName="openTime" type="time" class="form-control gray" name="openTime"
-          [ngClass]="{'is-valid':openTime.valid && openTime.touched,'is-invalid':openTime.invalid && openTime.touched}" />
-        <span *ngIf="openTime.invalid" class="invalid-feedback">
-          Please select open time!
-        </span>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="form-group"
-        [ngClass]="{'is-valid':closeTime.valid && closeTime.touched,'is-invalid':closeTime.invalid && closeTime.touched}">
-        <label>Evening close timeings</label>
-        <input formControlName="closeTime" type="time" class="form-control gray" name="closeTime"
-          [ngClass]="{'is-valid':closeTime.valid && closeTime.touched,'is-invalid':closeTime.invalid && closeTime.touched}" />
-        <span *ngIf="closeTime.invalid" class="invalid-feedback">
-          Please select close time!
-        </span>
-      </div>
-    </div>
     <div class="col-sm-12 mt-2">
       <div class="d-flex justify-content-between align-items-center">
-        <app-title title="Owener detail" titleText="Please fill restaurant owner information."></app-title>
+        <app-title title="Restaurant owner detail" titleText="Please fill restaurant owner information."></app-title>
         <app-button (click)="sameAsUser()">Same as registered user</app-button>
       </div>
       <div class="row" formGroupName="owner">
@@ -110,7 +88,7 @@
       </div>
     </div>
     <div class="col-sm-12 mt-2">
-      <app-title title=" Contact details" titleText="Please fill contact detail">
+      <app-title title="Restaurant contact detail" titleText="Please fill contact detail">
       </app-title>
     </div>
     <div class="col-sm-6">
@@ -125,9 +103,34 @@
       </div>
     </div>
     <div class="col-sm-6">
+      <div class="form-group"
+        [ngClass]="{'is-valid':email.valid && email.touched,'is-invalid':email.invalid && email.touched}">
+        <label>Email</label>
+        <input formControlName="email" type="text" class="form-control gray" name="email"
+          [ngClass]="{'is-valid':email.valid && email.touched,'is-invalid':email.invalid && email.touched}" />
+        <span class="invalid-feedback">
+          Email is required!
+        </span>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label>Website</label>
+        <input formControlName="website" type="text" class="form-control gray" name="website" />
+      </div>
+    </div>
+    <div class="col-sm-6">
       <div class="form-group">
         <label>Landline</label>
         <input formControlName="landline" type="text" class="form-control gray" name="landline" />
+      </div>
+    </div>
+    <div class="col-sm-12 mt-2">
+      <app-title title="About restaurant" titleText="Please write about the restaurant">
+      </app-title>
+      <div class="form-group">
+        <label>Summary</label>
+        <textarea class="form-control gray" formControlName="description" name="description"></textarea>
       </div>
     </div>
   </div>

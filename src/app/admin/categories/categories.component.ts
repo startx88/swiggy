@@ -82,35 +82,35 @@ export class CategoriesComponent implements OnInit, OnDestroy {
     };
 
     if (this.isEdit) {
-      this.categoryService
-        .addUpdateCategory(data, this.editItem.id, 'UPDATED')
-        .subscribe(
-          (response: ICategory) => {
-            this.isEdit = false;
-            this.modal.hide();
-            this.form.reset();
-            this.displayMessage(
-              Color.success,
-              'Category updated successfully!'
-            );
-          },
-          ({ message }) => this.displayMessage(Color.danger, message)
-        );
+      // this.categoryService
+      //   .addUpdateCategory(data, this.editItem.id, 'UPDATED')
+      //   .subscribe(
+      //     (response: ICategory) => {
+      //       this.isEdit = false;
+      //       this.modal.hide();
+      //       this.form.reset();
+      //       this.displayMessage(
+      //         Color.success,
+      //         'Category updated successfully!'
+      //       );
+      //     },
+      //     ({ message }) => this.displayMessage(Color.danger, message)
+      //   );
     } else {
-      this.categoryService.addUpdateCategory(data).subscribe(
-        (response: ICategory) => {
-          this.isEdit = false;
-          this.form.reset();
-          this.modal.hide();
-          this.displayMessage(Color.success, 'Category added successfully!');
-        },
-        ({ message }) => this.displayMessage(Color.danger, message)
-      );
+      // this.categoryService.addUpdateCategory(data).subscribe(
+      //   (response: ICategory) => {
+      //     this.isEdit = false;
+      //     this.form.reset();
+      //     this.modal.hide();
+      //     this.displayMessage(Color.success, 'Category added successfully!');
+      //   },
+      //   ({ message }) => this.displayMessage(Color.danger, message)
+      // );
     }
   }
   // delete category
   onDeleteHandler(id: string) {
-    this.categoryService.deleted(id).subscribe(
+    this.categoryService.deleteItem('', id).subscribe(
       (data) =>
         this.displayMessage(Color.success, 'Category deleted successfully!'),
       ({ message }) => this.displayMessage(Color.danger, message)

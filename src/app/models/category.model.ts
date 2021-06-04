@@ -1,4 +1,5 @@
 export interface ICategory {
+  restaurant?: string;
   id?: string;
   title: string;
   slug?: string;

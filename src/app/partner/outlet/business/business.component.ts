@@ -16,15 +16,7 @@ export class BusinessComponent implements OnInit {
   cuisines$: Observable<ICuisine[]>;
   subscription: Subscription;
   servingType: string[] = ['dine-in', 'delivery', 'both'];
-  weekDays: string[] = [
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-    'Sunday',
-  ];
+  weekDays: string[] = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   constructor(
     private cuisineService: CuisineService,
     private authSrv: AuthService

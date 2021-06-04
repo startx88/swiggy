@@ -12,101 +12,110 @@
       </h5>
     </div>
   </div>
-  <div class="tabs">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="home"
-          aria-selected="true">Outlet detail</a>
-      </li>
-      <li class="nav-item" role="presentation">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#menu" role="tab" aria-controls="profile"
-          aria-selected="false">Outlet Menu</a>
-      </li>
-    </ul>
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="detail" role="tabpanel" aria-labelledby="home-tab">
-        <div class="mt-2 row">
-          <div class="col">
-            <div class="detail mt-3">
-              <h6><i class="fa fa-user mr-1"></i>Owner detail</h6>
-              <ul class="list">
-                <li>{{outlet.owner.name}}</li>
-                <li>{{outlet.owner.email}}</li>
-                <li>{{outlet.owner.mobile}}</li>
-              </ul>
-            </div>
-
-            <div class="detail mt-3">
-              <h6><i class="fa fa-building mr-1"></i>Manager detail</h6>
-              <ul class="list">
-                <li>{{outlet.manager.name}}</li>
-                <li>{{outlet.manager.email}}</li>
-                <li>{{outlet.manager.mobile}}</li>
-              </ul>
-            </div>
-            <div class="detail mt-3">
-              <h6><i class="fa fa-calendar mr-1"></i>Open in week</h6>
-              <ul class="list">
-                <li *ngFor="let day of outlet.daysOpenInWeek">{{day}}</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col">
-            <div class="detail mt-3">
-              <h6><i class="fa fa-calendar mr-1"></i>Outlet open for</h6>
-              <p class="pl-4 mb-1">your are providing</p>
-              <ul class="list" *ngIf="outlet.servingType==='both'">
-                <li>Dine for customer's</li>
-                <li>Delivery for customer's</li>
-              </ul>
-            </div>
-            <div class="detail mt-3">
-              <h6><i class="fa fa-calendar mr-1"></i>Serving food</h6>
-              <ul class="list">
-                <li *ngFor="let day of outlet.cuisines">{{day}}</li>
-              </ul>
-            </div>
-            <div class="detail mt-3">
-              <h6><i class="fa fa-map-marker mr-1"></i> Address</h6>
-              <address style="line-height:1.5em">
-                {{outlet.address.address}}<br />
-                <span class="d-flex">State: {{outlet.address.state}}</span>
-                <span class="d-flex">City: {{outlet.address.city}}</span>
-                <span class="d-flex"> Pincode: {{outlet.address.pincode}}</span>
-              </address>
-            </div>
-          </div>
-        </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="title d-flex align-items-center justify-content-between">
+        <h5 class="design">
+          Category
+          <small>{{outlet.name}} category</small>
+        </h5>
+        <button type="button" data-toggle="modal" #modalButton data-target="#add-menu" class="btn btn-primary btn-xs">
+          Add category
+        </button>
       </div>
-      <div class="tab-pane fade" id="menu" role="tabpanel" aria-labelledby="profile-tab">
-        <div class="text-right mt-3">
-          <button type="button" data-toggle="modal" #modalButton data-target="#add-menu"
-            class="btn btn-primary btn-xs">Add
-            menu
-          </button>
-        </div>
-        <div class="outlet-menu mt-2">
-          <ul class="list reset menu">
-            <li class="menu-item d-flex align-items-center justify-content-between" *ngFor="let menu of outlet.menu">
-              <span>
-                <span class="d-flex"><i class="fa fa-caret-right"></i> {{menu.title}}</span>
-                <small class="ml-3">Rs. {{menu.price || 0}}</small> ,
-                <small>Offer:{{menu.offer || 0}}</small>
-              </span>
-              <div class="ml-auto">
-                <button type="button" (click)="onDeleeMenu(menu)" class="btn btn-icon btn-danger">
-                  <i class="fa fa-trash"></i>
-                </button>
-                <button type="button" class="btn btn-icon btn-edit" (click)="onEditMenu(menu)">
-                  <i class="fa fa-pencil"></i>
-                </button>
+      <div class="outlet-menu mt-2">
+        <ul class="list reset menu">
+          <li class="menu-item d-flex align-items-center justify-content-between" *ngFor="let cat of outlet.category">
+            <span>
+              <span class="d-flex"><i class="fa fa-caret-right"></i> {{cat.title}}</span>
+              <small class="ml-3 text-gray">{{cat.description}}</small>
+            </span>
+            <div class="ml-auto">
+              <button type="button" (click)="onDeleeCategory(c)" class="btn btn-icon btn-danger">
+                <i class="fa fa-trash"></i>
+              </button>
+              <button type="button" class="btn btn-icon btn-edit" (click)="onEditCategory(menu)">
+                <i class="fa fa-pencil"></i>
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <div class="tabs">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="home"
+              aria-selected="true">Outlet detail</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#menu" role="tab" aria-controls="profile"
+              aria-selected="false">Outlet Menu</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="detail" role="tabpanel" aria-labelledby="home-tab">
+            <div class="mt-2 row">
+              <div class="col">
+                <div class="detail mt-3">
+                  <h6><i class="fa fa-user mr-1"></i>Owner detail</h6>
+                  <ul class="list">
+                    <li>{{outlet.owner.name}}</li>
+                    <li>{{outlet.owner.email}}</li>
+                    <li>{{outlet.owner.mobile}}</li>
+                  </ul>
+                </div>
+
+                <div class="detail mt-3">
+                  <h6><i class="fa fa-building mr-1"></i>Manager detail</h6>
+                  <ul class="list">
+                    <li>{{outlet.manager.name}}</li>
+                    <li>{{outlet.manager.email}}</li>
+                    <li>{{outlet.manager.mobile}}</li>
+                  </ul>
+                </div>
+                <div class="detail mt-3">
+                  <h6><i class="fa fa-calendar mr-1"></i>Open in week</h6>
+                  <ul class="list">
+                    <li *ngFor="let day of outlet.daysOpenInWeek">{{day}}</li>
+                  </ul>
+                </div>
               </div>
-            </li>
-          </ul>
+              <div class="col">
+                <div class="detail mt-3">
+                  <h6><i class="fa fa-calendar mr-1"></i>Outlet open for</h6>
+                  <p class="pl-4 mb-1">your are providing</p>
+                  <ul class="list" *ngIf="outlet.servingType==='both'">
+                    <li>Dine for customer's</li>
+                    <li>Delivery for customer's</li>
+                  </ul>
+                </div>
+                <div class="detail mt-3">
+                  <h6><i class="fa fa-calendar mr-1"></i>Serving food</h6>
+                  <ul class="list">
+                    <li *ngFor="let day of outlet.cuisines">{{day}}</li>
+                  </ul>
+                </div>
+                <div class="detail mt-3">
+                  <h6><i class="fa fa-map-marker mr-1"></i> Address</h6>
+                  <address style="line-height:1.5em">
+                    {{outlet.address.address}}<br />
+                    <span class="d-flex">State: {{outlet.address.state}}</span>
+                    <span class="d-flex">City: {{outlet.address.city}}</span>
+                    <span class="d-flex"> Pincode: {{outlet.address.pincode}}</span>
+                  </address>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
+
+
 </div>
 
 <app-modal [id]="'add-menu'" (close)="onCloseModal()">
@@ -114,10 +123,10 @@
     <h5>Add outlet menu</h5>
   </ng-container>
   <ng-container class="body">
-    <form (ngSubmit)="onAddMenu()" [formGroup]="menuForm">
-      <app-add-outlet-menu [formGroup]="menuForm"></app-add-outlet-menu>
+    <form (ngSubmit)="onAddCategory()" [formGroup]="category">
+      <app-add-category [formGroup]="category"></app-add-category>
       <div class="form-group text-right">
-        <button type="submit" class="btn btn-primary">Add Menu</button>
+        <button type="submit" class="btn btn-primary">Add Category</button>
       </div>
     </form>
   </ng-container>

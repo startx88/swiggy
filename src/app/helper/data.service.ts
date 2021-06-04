@@ -63,7 +63,7 @@ export class DataService {
   partnerMenu: NavMenu[] = [
     { id: '001', name: 'Dashbaord', icon: 'th', url: '/dashboard' },
     { id: '002', name: 'Outlet', icon: 'building ', url: '/outlet' },
-    { id: '004', name: 'Recipes', icon: 'coffee', url: '/recipes' },
+    { id: '004', name: 'Product', icon: 'coffee', url: '/recipes' },
     { id: '005', name: 'Orders', icon: 'long-arrow-right', url: '/orders' },
     { id: '006', name: 'Users', icon: 'users', url: '/users' },
   ];

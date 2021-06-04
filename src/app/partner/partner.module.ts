@@ -13,12 +13,13 @@ import { WelcomeComponent } from './welcome/welcome.component';
 
 import { SharedModule } from '../shared/shared.module';
 import { UsersComponent } from './users/users.component';
-import { AddOutletComponent } from './outlet/add-outlet/add-outlet.component';
+
 import { BasicComponent } from './outlet/basic/basic.component';
 import { BusinessComponent } from './outlet/business/business.component';
 import { AddressComponent } from './outlet/address/address.component';
 import { DetailComponent } from './outlet/detail/detail.component';
 import { AddMenuComponent } from './outlet/add-menu/add-menu.component';
+import { AddCategoryComponent } from './outlet/add-category/add-category.component';
 
 @NgModule({
   declarations: [
@@ -31,12 +32,12 @@ import { AddMenuComponent } from './outlet/add-menu/add-menu.component';
     OutletComponent,
     WelcomeComponent,
     UsersComponent,
-    AddOutletComponent,
     BasicComponent,
     BusinessComponent,
     AddressComponent,
     DetailComponent,
     AddMenuComponent,
+    AddCategoryComponent,
   ],
   imports: [CommonModule, SharedModule, PartnerRouterModule],
 })

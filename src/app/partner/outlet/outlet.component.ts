@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -6,12 +6,11 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { IMenu, IOutlet } from 'src/app/models/outlet.model';
+
+import { IOutlet } from 'src/app/models/outlet.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { MenuService } from 'src/app/services/menu.service';
 import { OutletService } from 'src/app/services/outlet.service';
-import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 import { onTimeChange } from 'src/app/utility/data';
 import { Color } from 'src/app/utility/enums/color.enum ';
 
@@ -30,8 +29,7 @@ export class OutletComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private alert: AlertService,
-    private outletService: OutletService,
-    private menuService: MenuService
+    private outletService: OutletService
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +41,8 @@ export class OutletComponent implements OnInit {
     this.form = this.fb.group({
       basic: this.fb.group({
         name: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        website: [''],
         image: [File],
         restaurantType: ['veg', Validators.required],
         yearOfBirth: ['', Validators.required],
@@ -58,8 +58,7 @@ export class OutletComponent implements OnInit {
           ],
         ],
         landline: [''],
-        openTime: ['10:30', Validators.required],
-        closeTime: ['22:30', Validators.required],
+        description: [''],
         owner: this.fb.group({
           name: ['', Validators.required],
           email: ['', [Validators.required, Validators.email]],
@@ -94,11 +93,13 @@ export class OutletComponent implements OnInit {
         }),
         cuisines: this.fb.array([], Validators.required),
         daysOpenInWeek: this.fb.array([], Validators.required),
+        from: ['', Validators.required],
+        to: ['', Validators.required],
         servingType: ['both'],
         menuImage: [null],
-        costFor: [''],
-        isOpen: [''],
-        isClose: [''],
+        costForTwo: [''],
+        openNow: [''],
+        isClosed: [''],
       }),
       addresses: this.fb.group({
         address: ['', Validators.required],
@@ -138,9 +139,9 @@ export class OutletComponent implements OnInit {
     if (this.form.invalid) return;
     const data = {
       ...this.form.value.basic,
-      openTime: onTimeChange(this.form.value.basic.openTime),
-      closeTime: onTimeChange(this.form.value.basic.closeTime),
       ...this.form.value.buisiness,
+      from: onTimeChange(this.form.value.buisiness.from),
+      to: onTimeChange(this.form.value.buisiness.to),
       address: this.form.value.addresses,
     };
 

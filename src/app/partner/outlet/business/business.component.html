@@ -2,7 +2,7 @@
   <ng-container formGroupName="buisiness">
     <div class="col-sm-12">
       <div class="d-flex align-items-center justify-content-between">
-        <app-title title="Manager detail" titleText="Plese fill manager detail">
+        <app-title title="Restaurant manager detail" titleText="Plese fill manager detail">
 
         </app-title>
         <app-button (click)="sameAsUser()">Same as registered user</app-button>
@@ -71,20 +71,38 @@
           <label [for]="'c-'+cuisine.id" class="ml-2 primary">{{cuisine.title}}</label>
         </div>
       </div>
-      <app-title title="Week days" titleText="Please select days to open restaurant"></app-title>
-      <div class="cuisines d-flex flex-wrap mb-4 mt-1">
-        <div class="form-checkbox mr-3 mb-2 mw-150" *ngFor="let day of weekDays; let i=index">
-          <input type="checkbox" [id]="'d-'+day" [name]="day" [value]="day"
-            (click)="onAddValue('daysOpenInWeek',$event)" />
-          <label [for]="'d-'+day" class="ml-2 primary">{{day}}</label>
+      <app-title title="Restaurant timings" titleText="Please select days to open restaurant"></app-title>
+      <div class="cuisines  mb-4 mt-1">
+        <div class="d-flex flex-wrap">
+          <div class="form-checkbox mr-3 mb-2 " *ngFor="let day of weekDays; let i=index">
+            <input type="checkbox" [id]="'d-'+day" [name]="day" [value]="day"
+              (click)="onAddValue('daysOpenInWeek',$event)" />
+            <label [for]="'d-'+day" class="ml-2 primary">{{day}}</label>
+          </div>
+        </div>
+        <div class="row pl-3">
+          <div class="form-group mr-3">
+            <label>From:</label>
+            <input class="form-control gray" type="time" formControlName="from" name="from" />
+          </div>
+          <div class="form-group">
+            <label>To:</label>
+            <input class="form-control gray" type="time" formControlName="to" name="to" />
+          </div>
         </div>
       </div>
       <app-title title="Other infrmation" titleText="Please select feature if you want."></app-title>
     </div>
+    <div class="col-md-6  pt-3">
+      <div class="form-checkbox">
+        <input type="checkbox" id="openNow" name="openNow" />
+        <label for="openNow" class="ml-2 primary">Is Open Now</label>
+      </div>
+    </div>
     <div class="col-md-6">
       <div class="form-group">
         <label>Cost for 2 people</label>
-        <input type="text" class="form-control gray" formControlName="costFor" name="costFor" />
+        <input type="text" class="form-control gray" formControlName="costForTwo" name="costForTwo" />
       </div>
     </div>
   </ng-container>

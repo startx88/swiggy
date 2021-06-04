@@ -1,6 +1,6 @@
 import { FoodType } from '../utility/enums/food-type.enum';
 import { IAddress } from './address.model';
-import { IMenu } from './menu.model';
+import { ICategory } from './category.model';
 
 interface IContactInfo {
   name: string;
@@ -12,6 +12,8 @@ interface IOutlet {
   id?: string;
   user: string;
   name: string;
+  email: string;
+  website: string;
   mobile: string;
   landline: string;
   image: string;
@@ -21,15 +23,14 @@ interface IOutlet {
   servingType: string;
   yearOfBirth: string;
   cuisines: string[];
-  openTime: string;
-  closeTime: string;
+  from: string;
+  to: string;
   daysOpenInWeek: string[];
   menuImage?: string;
-  costFor?: number;
-  isOpen: boolean;
-  isClose: boolean;
+  costForTwo?: number;
+  isClosed: boolean;
   address: IAddress;
-  menu?: IMenu[];
+  category?: ICategory[];
 }
 interface IOutletReponse {
   id?: string;
@@ -40,4 +41,4 @@ interface IOutletReponse {
 /**
  * Export
  */
-export { IMenu, IOutlet, IOutletReponse };
+export { IOutlet, IOutletReponse };
