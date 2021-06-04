@@ -1,3 +1,60 @@
-<div class="card card-item">
-  <ng-content class=".title"></ng-content>
-</div>
+<ng-container *ngIf="type; else other">
+  <div class="product-item _vert" *ngIf="product">
+    <div class="product-item-img mb-3" style="background-image: url('{{product.image}}')">
+      <a [routerLink]="[url]">
+        <span [ngClass]="{'_veg':product.recipeType==='veg','_nonveg':product.recipeType==='nonveg'}"></span>
+      </a>
+    </div>
+    <div class="product-item-body">
+      <h5>
+        <small class="xs text-primary mb-2">
+          <i class="fa  fa-leaf mr-2"></i>{{product.cuisineType?.title}}</small>
+        {{product.title}}
+      </h5>
+
+      <p class="xs mt-3">{{product.description}}</p>
+      <div class="price">
+        <div>
+          <del class="text-gray mr-3">Rs. {{product.price}}</del>
+          <ins class="text-primary">Rs. <b>{{product.price - ((product.price * product.offer)/100)}}</b></ins>
+        </div>
+      </div>
+    </div>
+    <div class="product-item-footer">
+      <button class="btn btn-primary btn-block">
+        <i class="fa  fa-shopping-cart mr-2"></i> Add to cart
+      </button>
+    </div>
+    <div class="product-item-counter mt-3 d-flex justify-content-between align-items-center">
+      <button class="btn btn-primary">-</button>
+      <span>1</span>
+      <button class="btn btn-primary">+</button>
+    </div>
+  </div>
+</ng-container>
+<ng-template #other>
+  <div class="product-item _horz">
+    <div class="product-item-body">
+      <span [ngClass]="{'_veg':product.recipeType==='veg','_nonveg':product.recipeType==='nonveg'}"></span>
+      <h5>
+        <small class="xs text-primary mb-2">
+          <i class="fa  fa-leaf mr-2"></i>{{product.cuisineType?.title}}</small>
+        {{product.title}}
+      </h5>
+      <p class="xs mt-2">{{product.description}}</p>
+      <div class="price">
+        <div>
+          <del class="text-gray mr-3">Rs. {{product.price}}</del>
+          <ins class="text-primary">Rs. <b>{{product.price - ((product.price * product.offer)/100)}}</b></ins>
+        </div>
+      </div>
+    </div>
+    <div class="product-item-img" style="background-image: url('{{product.image}}')">
+      <div class="product-item-counter mt-3 d-flex justify-content-between align-items-center">
+        <button class="btn btn-white">-</button>
+        <span>1</span>
+        <button class="btn btn-white">+</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
