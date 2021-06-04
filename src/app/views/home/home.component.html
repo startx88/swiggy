@@ -1,9 +1,52 @@
-<app-hero></app-hero>
+<app-hero>
+  <div class="row">
+    <div class="col-md-4">
+      <img src="../../assets/images/banner1.jpg" />
+    </div>
+    <div class="col-md-4">
+      <img src="../../assets/images/banner1.jpg" />
+    </div>
+    <div class="col-md-4">
+      <img src="../../assets/images/banner1.jpg" />
+    </div>
+  </div>
+</app-hero>
 
 <div class="container mb-4">
   <div class="row" *ngIf="(outlets$ | async) as outlets">
     <div class="col-sm-4" *ngFor="let outlet of outlets">
-      {{outlet.name}}
+      <div class="product-item _vert" *ngIf="product">
+        <div class="product-item-img mb-3" style="background-image: url('{{product.image}}')">
+          <a [routerLink]="[url]">
+            <span [ngClass]="{'_veg':product.recipeType==='veg','_nonveg':product.recipeType==='nonveg'}"></span>
+          </a>
+        </div>
+        <div class="product-item-body">
+          <h5>
+            <small class="xs text-primary mb-2">
+              <i class="fa  fa-leaf mr-2"></i>{{outlet.cuisineType?.title}}</small>
+            {{outlet.title}}
+          </h5>
+
+          <p class="xs mt-3">{{outlet.description}}</p>
+          <div class="price">
+            <div>
+              <del class="text-gray mr-3">Rs. {{outlet.price}}</del>
+              <ins class="text-primary">Rs. <b>{{outlet.price - ((product.price * product.offer)/100)}}</b></ins>
+            </div>
+          </div>
+        </div>
+        <div class="product-item-footer">
+          <button class="btn btn-primary btn-block">
+            <i class="fa  fa-shopping-cart mr-2"></i> Add to cart
+          </button>
+        </div>
+        <div class="product-item-counter mt-3 d-flex justify-content-between align-items-center">
+          <button class="btn btn-primary">-</button>
+          <span>1</span>
+          <button class="btn btn-primary">+</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
