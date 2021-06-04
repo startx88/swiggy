@@ -51,8 +51,8 @@ export class ProductService {
   addUpdateItem(
     restaurantId: string,
     product: IProduct,
-    productId: string,
-    status: string
+    productId?: string,
+    status?: string
   ) {
     const formdata = new FormData();
     formdata.append('category', product.category);

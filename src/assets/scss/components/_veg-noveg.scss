@@ -1,0 +1,71 @@
+%product-type {
+  width: 16px;
+  height: 16px;
+  border-radius: 50px;
+  display: block;
+  position: relative;
+  &::after {
+    border-radius: inherit;
+    content: "";
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    animation: zoomCircle 1.5s linear infinite;
+  }
+}
+._veg {
+  @extend %product-type;
+  border: 1px solid $success;
+  animation: bgColorSuccess 1.5s linear infinite;
+  &:after {
+    background-color: $success;
+  }
+}
+._nonveg {
+  @extend %product-type;
+  border: 1px solid $danger;
+  animation: bgColorDanger 1.5s linear infinite;
+  &:after {
+    background-color: $danger;
+  }
+}
+
+@keyframes zoomCircle {
+  0%,
+  100% {
+    transform: scale(0);
+  }
+  25% {
+    transform: scale(0.5);
+  }
+  75% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bgColorSuccess {
+  0%,
+  100% {
+    background-color: rgba($success, 0.9);
+  }
+  25% {
+    background-color: rgba($success, 0.2);
+  }
+  75% {
+    background-color: rgba($success, 0);
+  }
+}
+@keyframes bgColorDanger {
+  0%,
+  100% {
+    background-color: rgba($danger, 0.9);
+  }
+  25% {
+    background-color: rgba($danger, 0.2);
+  }
+  75% {
+    background-color: rgba($danger, 0);
+  }
+}

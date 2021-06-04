@@ -4,17 +4,19 @@ import { Observable, Subscription } from 'rxjs';
 import { ICuisine } from 'src/app/models/cuisine.model';
 import { IOutlet } from 'src/app/models/outlet.model';
 import { IProduct } from 'src/app/models/product.model';
+import { AlertService } from 'src/app/services/alert.service';
 import { CuisineService } from 'src/app/services/cuisine.service';
 import { OutletService } from 'src/app/services/outlet.service';
 import { ProductService } from 'src/app/services/product.service';
 import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
+import { Color } from 'src/app/utility/enums/color.enum ';
 
 @Component({
-  selector: 'app-partner-recipe',
-  templateUrl: './partner-recipe.component.html',
-  styleUrls: ['./partner-recipe.component.scss'],
+  selector: 'app-product',
+  templateUrl: './product.component.html',
+  styleUrls: ['./product.component.scss'],
 })
-export class PartnerRecipeComponent implements OnInit {
+export class ProductComponent implements OnInit {
   products$: Observable<IProduct[]>;
   productForm: FormGroup;
   isProductEdit: boolean = false;
@@ -29,7 +31,8 @@ export class PartnerRecipeComponent implements OnInit {
     private productService: ProductService,
     private outletService: OutletService,
     private fb: FormBuilder,
-    private cuisineService: CuisineService
+    private cuisineService: CuisineService,
+    private alert: AlertService
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +47,7 @@ export class PartnerRecipeComponent implements OnInit {
 
     this.productForm = this.fb.group({
       title: ['', Validators.required],
+      image: [File, Validators.required],
       category: ['', Validators.required],
       recipeType: ['veg', Validators.required],
       cuisineType: ['', Validators.required],
@@ -57,11 +61,29 @@ export class PartnerRecipeComponent implements OnInit {
     this.productForm.reset();
   }
 
+  onUpload(file: File) {
+    this.productForm.patchValue({
+      image: file,
+    });
+  }
+
   // add product
   onAddCategory() {
     this.productForm.markAllAsTouched();
     if (this.productForm.invalid) return;
-    console.log(this.productForm.value);
+    if (this.isProductEdit) {
+    } else {
+      this.productService
+        .addUpdateItem(this.outlets.id, this.productForm.value)
+        .subscribe(
+          (response) => {
+            this.modal.hide();
+            this.productForm.reset();
+            this.displayMessage(Color.danger, 'Product added successfully');
+          },
+          ({ message }) => this.displayMessage(Color.danger, message)
+        );
+    }
   }
 
   // validation
@@ -79,5 +101,14 @@ export class PartnerRecipeComponent implements OnInit {
   }
   get recipeType() {
     return this.productForm.get('recipeType');
+  }
+
+  // error message
+  displayMessage(color: Color, message: string) {
+    this.alert.alertShow({
+      color: color,
+      message: message,
+      visible: true,
+    });
   }
 }

@@ -1,28 +1,3 @@
-._veg {
-  background-color: $white;
-  padding: 6px 12px;
-  max-width: 120px;
-  line-height: 28px;
-  &_icon {
-    width: 16px;
-    height: 16px;
-    border: 2px solid $green;
-    display: inline-block;
-    text-align: center;
-    line-height: 13px;
-    &:before {
-      width: 10px;
-      height: 10px;
-      background-color: $green;
-      border-radius: 50px;
-      content: "";
-      display: inline-block;
-    }
-  }
-  &_nonveg {
-  }
-}
-
 ._fav {
   width: 100%;
   max-width: 120px;
