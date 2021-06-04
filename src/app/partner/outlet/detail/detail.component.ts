@@ -70,6 +70,7 @@ export class DetailComponent implements OnInit {
 
   // delete menu
   onDeleteCategory(category: ICategory) {
+    console.log(category);
     this.categoryService.deleteItem(this.outlet.id, category.id).subscribe(
       () => {
         this.displayMessage(Color.success, 'Category deleted successfully');
