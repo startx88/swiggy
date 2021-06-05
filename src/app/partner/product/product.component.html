@@ -14,7 +14,7 @@
     <h5>{{isProductEdit?'Update':'Add'}} product</h5>
   </ng-container>
   <ng-container class="body">
-    <form (ngSubmit)="onAddCategory()" [formGroup]="productForm" novalidate>
+    <form (ngSubmit)="onAddProduct()" [formGroup]="productForm" novalidate>
       <div class="row">
         <div class="col-md-12">
           <div class="form-group" *ngIf="outlets?.category"
@@ -22,7 +22,7 @@
             <label>Select category</label>
             <select formControlName="category" name="category" class="form-control gray"
               [ngClass]="{'is-valid':cat.valid && cat.touched,'is-invalid':cat.invalid && cat.touched}">
-              <option [value]="cat.id" *ngFor="let cat of outlets?.category; let i=index">
+              <option [ngValue]="cat" *ngFor="let cat of outlets?.category; let i=index">
                 {{cat.title}}
               </option>
             </select>

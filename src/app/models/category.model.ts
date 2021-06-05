@@ -1,3 +1,5 @@
+import { IProduct } from './product.model';
+
 export interface ICategory {
   restaurant?: string;
   id?: string;
@@ -6,5 +8,6 @@ export interface ICategory {
   image?: string;
   description?: string;
   active?: boolean;
+  products?: IProduct[];
   insert?: Date;
 }

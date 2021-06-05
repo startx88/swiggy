@@ -14,26 +14,27 @@
 
 <div class="container mb-4">
   <div class="row" *ngIf="(outlets$ | async) as outlets">
-    <div class="col-sm-4" *ngFor="let outlet of outlets">
-      <div class="product-item _vert" *ngIf="product">
-        <div class="product-item-img mb-3" style="background-image: url('{{product.image}}')">
-          <a [routerLink]="[url]">
-            <span [ngClass]="{'_veg':product.recipeType==='veg','_nonveg':product.recipeType==='nonveg'}"></span>
+    <div class="col-sm-3" *ngFor="let outlet of outlets">
+      <div class="product-item _vert">
+        <div class="product-item-img mb-3" style="background-image: url('{{outlet.image}}')">
+          <a [routerLink]="[outlet.id]">
+            <span *ngIf="outlet.servingType=='veg'" class="_veg"></span>
+            <span *ngIf="outlet.servingType=='nonveg'" class="_nonveg"></span>
+            <span *ngIf="outlet.servingType=='both'" class="_veg"></span>
+            <span *ngIf="outlet.servingType=='both'" class="_nonveg left-20"></span>
           </a>
         </div>
         <div class="product-item-body">
           <h5>
-            <small class="xs text-primary mb-2">
-              <i class="fa  fa-leaf mr-2"></i>{{outlet.cuisineType?.title}}</small>
-            {{outlet.title}}
+            {{outlet.name}}
           </h5>
-
-          <p class="xs mt-3">{{outlet.description}}</p>
-          <div class="price">
-            <div>
-              <del class="text-gray mr-3">Rs. {{outlet.price}}</del>
-              <ins class="text-primary">Rs. <b>{{outlet.price - ((product.price * product.offer)/100)}}</b></ins>
-            </div>
+          <p class="xs cusines">
+            <span *ngFor="let cuisine of outlet?.cuisines"> {{cuisine}}</span>
+          </p>
+          <div class="strip text-gray xs pt-2 pb-2 d-flex justify-content-between">
+            <span class="rate"><i class="fa fa-star mr-1"></i>3.9</span>
+            <span>45 MIN</span>
+            <span class="">Rs.{{outlet.costFor}} FOR TWO</span>
           </div>
         </div>
         <div class="product-item-footer">
@@ -41,11 +42,11 @@
             <i class="fa  fa-shopping-cart mr-2"></i> Add to cart
           </button>
         </div>
-        <div class="product-item-counter mt-3 d-flex justify-content-between align-items-center">
+        <!-- <div class="product-item-counter mt-3 d-flex justify-content-between align-items-center">
           <button class="btn btn-primary">-</button>
           <span>1</span>
           <button class="btn btn-primary">+</button>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

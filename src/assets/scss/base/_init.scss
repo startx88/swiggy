@@ -2,6 +2,7 @@
   outline: none;
 }
 html {
+  scroll-behavior: smooth;
   min-height: $global-height;
 }
 body {

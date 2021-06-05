@@ -33,7 +33,7 @@
   </div>
 </ng-container>
 <ng-template #other>
-  <div class="product-item _horz">
+  <div class="product-item _horz mb-2">
     <div class="product-item-body">
       <span [ngClass]="{'_veg':product.recipeType==='veg','_nonveg':product.recipeType==='nonveg'}"></span>
       <h5>
@@ -41,7 +41,7 @@
           <i class="fa  fa-leaf mr-2"></i>{{product.cuisineType?.title}}</small>
         {{product.title}}
       </h5>
-      <p class="xs mt-2">{{product.description}}</p>
+      <p class="xs mt-1 mb-2">{{product.description}}</p>
       <div class="price">
         <div>
           <del class="text-gray mr-3">Rs. {{product.price}}</del>

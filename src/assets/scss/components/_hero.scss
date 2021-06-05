@@ -36,6 +36,9 @@
     }
   }
 
+  &-detail {
+    position: relative;
+  }
   &-btm {
     position: absolute;
     bottom: -40px;
@@ -43,8 +46,21 @@
       &:first-child {
         flex: 2;
       }
-      flex: 1;
+      &:not(:first-child) {
+        flex: 1;
+        max-width: 150px;
+        padding-left: 12px;
+        padding-right: 12px;
+      }
       box-shadow: $navbar-shadow;
+    }
+  }
+
+  .image {
+    &.h150 {
+      border-radius: 5px;
+
+      min-height: 150px;
     }
   }
 }

@@ -45,6 +45,10 @@ export class ProductService {
     );
   }
 
+  getProductByCat(catId: string) {
+    return this.products.filter((x) => x.category.id === catId);
+  }
+
   /**********
    * Add / Update product
    */
@@ -55,7 +59,7 @@ export class ProductService {
     status?: string
   ) {
     const formdata = new FormData();
-    formdata.append('category', product.category);
+    formdata.append('category', product.category.id);
     formdata.append('cuisine', product.cuisine);
     formdata.append('title', product.title);
     formdata.append('recipeType', product.recipeType);

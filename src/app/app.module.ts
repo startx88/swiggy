@@ -14,6 +14,7 @@ import { SharedModule } from './shared/shared.module';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { AuthInterceptor } from './helper/auth.interceptor';
+import { OutletDetailComponent } from './views/outlet-detail/outlet-detail.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AuthInterceptor } from './helper/auth.interceptor';
     PolicyComponent,
     HeaderComponent,
     FooterComponent,
+    OutletDetailComponent,
   ],
   imports: [BrowserModule, AppRouterModule, SharedModule, HttpClientModule],
   providers: [

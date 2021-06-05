@@ -3,7 +3,7 @@ import { ICuisine } from './cuisine.model';
 
 export interface IProduct {
   id?: string;
-  category: string;
+  category: ICategory;
   cuisine: string;
   title: string;
   recipeType: string;

@@ -8,4 +8,36 @@
       min-width: 15px;
     }
   }
+  &.right {
+    text-align: right;
+  }
+  &.vertical {
+    li {
+      a {
+        color: $text-color;
+        display: block;
+        padding: 5px;
+        position: relative;
+        &:after {
+          width: 3px;
+          position: absolute;
+          height: 100%;
+          background-color: $primary;
+          content: "";
+          right: -17px;
+          z-index: 1;
+          top: 0;
+          opacity: 0;
+        }
+        &.active {
+          font-weight: 500;
+          color: $primary;
+
+          &:after {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
 }

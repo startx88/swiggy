@@ -9,10 +9,13 @@ import { PolicyComponent } from './views/policy/policy.component';
 import { AuthGuard } from './helper/auth.guard';
 import { AdminGuard } from './helper/admin.guard';
 import { PartnerGuard } from './helper/partner.guard';
+import { OutletDetailComponent } from './views/outlet-detail/outlet-detail.component';
 
 // App Routes
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: 'restaurant', pathMatch: 'full' },
+  { path: 'restaurant', component: HomeComponent },
+  { path: 'restaurant/:id', component: OutletDetailComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'privacy-policy', component: PolicyComponent },
@@ -43,7 +46,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes)],
+  imports: [RouterModule.forRoot(appRoutes, { anchorScrolling: 'enabled' })],
   exports: [RouterModule],
 })
 export class AppRouterModule {}

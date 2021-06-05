@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { ICuisine } from 'src/app/models/cuisine.model';
 import { IOutlet } from 'src/app/models/outlet.model';
+import { ICategory } from '../../models/category.model';
 import { IProduct } from 'src/app/models/product.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { CuisineService } from 'src/app/services/cuisine.service';
@@ -48,7 +49,7 @@ export class ProductComponent implements OnInit {
     this.productForm = this.fb.group({
       title: ['', Validators.required],
       image: [File, Validators.required],
-      category: ['', Validators.required],
+      category: [null, Validators.required],
       recipeType: ['veg', Validators.required],
       cuisineType: ['', Validators.required],
       price: ['', Validators.required],
@@ -68,9 +69,10 @@ export class ProductComponent implements OnInit {
   }
 
   // add product
-  onAddCategory() {
+  onAddProduct() {
     this.productForm.markAllAsTouched();
     if (this.productForm.invalid) return;
+    console.log(this.productForm.value);
     if (this.isProductEdit) {
     } else {
       this.productService
@@ -79,7 +81,7 @@ export class ProductComponent implements OnInit {
           (response) => {
             this.modal.hide();
             this.productForm.reset();
-            this.displayMessage(Color.danger, 'Product added successfully');
+            this.displayMessage(Color.success, 'Product added successfully');
           },
           ({ message }) => this.displayMessage(Color.danger, message)
         );

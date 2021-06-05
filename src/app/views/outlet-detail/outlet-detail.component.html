@@ -1,0 +1,76 @@
+<div class="hero" *ngIf="(restaurant$ | async) as restaurant">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="image h150" style="background-image: url({{restaurant?.image}})"></div>
+      </div>
+      <div class="col-sm-6">
+        <div class="hero-detail">
+          <h3 class="text-white">{{restaurant.name}}</h3>
+          <address class="text-gray">
+            {{restaurant.address.address}}
+          </address>
+          <div class="mt-2 d-flex justify-content-between">
+            <div class="text-white">
+              <span class="md"><i class="fa fa-star"></i> 3.9</span>
+              <small class="d-block text-gray">1000 + ratings</small>
+            </div>
+            <div class="text-white">
+              <span class="md"><i class="fa fa-clock-o"></i> 60 MINS</span>
+              <small class="d-block text-gray">Delivery Time</small>
+            </div>
+            <div class="text-white">
+              <span class="md"><i class="fa fa-clock-o"></i> Rs 300</span>
+              <small class="d-block text-gray">Cost for two</small>
+            </div>
+          </div>
+          <div class="hero-btm w-full d-flex">
+            <div class="search">
+              <input class="form-control white rounded-0" type="text" placeholder="Search for dishes..." value="" />
+            </div>
+            <div class="d-flex align-items-center bg-white ml-3 mr-3">
+              <div class="form-checkbox">
+                <div class="form-checkbox success">
+                  <input type="checkbox" id="veg" name="veg" value="veg" />
+                  <label for="veg" class="ml-2 primary">Veg Only</label>
+                </div>
+              </div>
+            </div>
+            <div class="_fav">
+              <button type="button" class="btn">
+                <i class="fa fa-heart mr-2"></i> Favorite
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="container mt-5 mb-5" *ngIf="restaurant$ | async as restaurant">
+  <div class="row">
+    <div class="col-sm-3">
+      <ul class="list reset right vertical">
+        <li *ngFor="let cat of restaurant?.category">
+          <a [routerLink]="" [class.active]="isSectionActive(cat.title)" [routerLinkActiveOptions]="{exact:true}"
+            fragment="{{cat.title}}">{{cat.title}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-6 border-left">
+      <article [id]="category.title" *ngFor="let category of restaurant?.category" class="mb-5 pl-2">
+        <h4 class="mb-4" [ngClass]="{'text-primary':fragment===category.title}">
+          {{category.title}}
+          <small class="xs text-gray">{{category?.products.length}} Item</small>
+        </h4>
+        <ng-container *ngFor="let product of category?.products">
+          <app-product-item [type]="false" [product]="product"></app-product-item>
+        </ng-container>
+      </article>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+</div>

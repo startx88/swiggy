@@ -3,9 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { ICategory } from '../models/category.model';
 import { IOutlet } from '../models/outlet.model';
+import { IProduct } from '../models/product.model';
 import { CategoryService } from './category.service';
 import { MenuService } from './menu.service';
+import { ProductService } from './product.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +21,8 @@ export class OutletService {
   url = environment.apiUrl + '/outlet';
   constructor(
     private http: HttpClient,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private productService: ProductService
   ) {}
 
   /**********
@@ -32,8 +36,8 @@ export class OutletService {
         for (let i = 0; i < outlets.length; i++) {
           this.categoryService
             .getCategoryByOutlet(outlets[i].id)
-            .subscribe((menus) => {
-              outlets[i].menu = menus.filter(
+            .subscribe((cats) => {
+              outlets[i].category = cats.filter(
                 (x) => x.restaurant == outlets[i].id
               );
             });
@@ -58,8 +62,19 @@ export class OutletService {
         let outlets = response;
         this.categoryService
           .getCategoryByOutlet(outlets.id)
-          .subscribe((menus) => {
-            outlets.menu = menus.filter((x) => x.restaurant == outlets.id);
+          .subscribe((catResponse) => {
+            outlets.category = catResponse
+              .filter((x) => x.restaurant == outlets.id)
+              .map((cat) => {
+                cat.products = [];
+                this.productService
+                  .getProductsByRestaurant(response.id)
+                  .subscribe((products: IProduct[]) => {
+                    const p = products.filter((x) => x.category.id === cat.id);
+                    cat.products.push(...p);
+                  });
+                return cat;
+              });
           });
         return outlets;
       })
