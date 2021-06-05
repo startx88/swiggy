@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ICategory } from 'src/app/models/category.model';
 import { IOutlet } from 'src/app/models/outlet.model';
 import { CategoryService } from 'src/app/services/category.service';
@@ -13,25 +13,31 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./outlet-detail.component.scss'],
 })
 export class OutletDetailComponent implements OnInit {
-  restaurant$: Observable<IOutlet>;
+  restaurant: IOutlet;
   products: any;
   category: ICategory[];
   isActive: boolean;
   fragment: string;
+  isVeg: string;
+  filteredData: IOutlet;
+  subscription: Subscription;
   constructor(
     private route: ActivatedRoute,
-    private outletService: OutletService,
-    private categoryService: CategoryService,
-    private productService: ProductService
+    private outletService: OutletService
   ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.restaurant$ = this.outletService.geOutletById(id);
+    this.subscription = this.outletService
+      .geOutletById(id)
+      .subscribe((response) => {
+        this.filteredData = this.restaurant = response;
+      });
     this.route.fragment.subscribe((fragment) => {
-      console.log(fragment);
       this.fragment = fragment;
     });
+
+    console.log(this.isVeg);
   }
 
   isSectionActive(section: string): boolean {
@@ -40,5 +46,17 @@ export class OutletDetailComponent implements OnInit {
       element = fragment === section.split('#').pop();
     });
     return element;
+  }
+
+  ngAfterViewChecked() {
+    const products = this.restaurant.category.map((x) => x.products);
+
+    console.log(products);
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

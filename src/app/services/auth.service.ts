@@ -65,6 +65,7 @@ export class AuthService {
     const expireTime = new Date(JSON.parse(localStorage.getItem('expireTime')));
     const token = localStorage.getItem('token');
     if (!token || new Date() > expireTime) {
+      this.logout();
       return;
     }
 
