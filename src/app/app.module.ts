@@ -17,6 +17,7 @@ import { AuthInterceptor } from './helper/auth.interceptor';
 import { OutletDetailComponent } from './views/outlet-detail/outlet-detail.component';
 import { CartComponent } from './views/cart/cart.component';
 import { CheckoutComponent } from './views/checkout/checkout.component';
+import { OrderSuccessComponent } from './views/order-success/order-success.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { CheckoutComponent } from './views/checkout/checkout.component';
     OutletDetailComponent,
     CartComponent,
     CheckoutComponent,
+    OrderSuccessComponent,
   ],
   imports: [BrowserModule, AppRouterModule, SharedModule, HttpClientModule],
   providers: [

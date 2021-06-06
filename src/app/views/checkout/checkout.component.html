@@ -1,1 +1,193 @@
-<p>checkout works!</p>
+<div class="hero">
+  <div class="container d-flex justify-content-between align-items-center">
+    <h1 class="text-white mb-0">Checkout<small class='xs light'>Welcome to checkout page.</small></h1>
+    <nav class="breadcrumb">
+      <ol>
+        <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">checkout</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <div class="col-md-8">
+      <app-title title="Shipping details" titleText="Please fill Shipping details"></app-title>
+      <form class="row mt-3" [formGroup]="form">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>First name</label>
+            <input class="form-control gray" formControlName="firstname" name="firstname" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Last name</label>
+            <input class="form-control gray" formControlName="lastname" name="lastname" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Email</label>
+            <input class="form-control gray" formControlName="email" name="email" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Mobile</label>
+            <input class="form-control gray" formControlName="mobile" name="mobile" />
+          </div>
+        </div>
+        <div class="col-md-12" formGroupName="addAddress">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="">Addresses</label>
+                <input class="form-control gray" formControlName="address" name="address" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">State</label>
+                <input class="form-control gray" formControlName="state" name="state" />
+              </div>
+
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">City</label>
+                <input class="form-control gray" formControlName="city" name="city" />
+              </div>
+
+            </div>
+            <div class="col-md-6">
+              <label for="">Postal code</label>
+              <input class="form-control gray" formControlName="pincode" name="pincode" />
+            </div>
+            <div class="col-md-6">
+              <label for="">Land mark</label>
+              <input class="form-control gray" formControlName="landmark" name="landmark" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 mt-5">
+          <app-title title="Billing details" titleText="Please fill billing details"></app-title>
+          <div class="form-checkbox mb-3">
+            <input #veg (change)="sameAs=$event.target.checked" type="checkbox" id="sameas" name="sameas"
+              value="sameas" />
+            <label for="sameas" class="ml-2 primary">Same as shipping address.</label>
+          </div>
+          <div class="row" *ngIf="sameAs">
+            <div class="col-md-6">
+              <div class="form-group">
+
+                <label>First name</label>
+                <input class="form-control gray" formControlName="firstname" name="firstname" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Last name</label>
+                <input class="form-control gray" formControlName="lastname" name="lastname" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Email</label>
+                <input class="form-control gray" formControlName="email" name="email" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Mobile</label>
+                <input class="form-control gray" formControlName="mobile" name="mobile" />
+              </div>
+            </div>
+            <div class="col-md-12" formGroupName="addAddress">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="">Addresses</label>
+                    <input class="form-control gray" formControlName="address" name="address" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="">State</label>
+                    <input class="form-control gray" formControlName="state" name="state" />
+                  </div>
+
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="">City</label>
+                    <input class="form-control gray" formControlName="city" name="city" />
+                  </div>
+
+                </div>
+                <div class="col-md-6">
+                  <label for="">Postal code</label>
+                  <input class="form-control gray" formControlName="pincode" name="pincode" />
+                </div>
+                <div class="col-md-6">
+                  <label for="">Land mark</label>
+                  <input class="form-control gray" formControlName="landmark" name="landmark" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4">
+      <div class="order-summary">
+        <div class="order-summary-title">
+          <h4>Order summary</h4>
+        </div>
+        <div class="cart-list">
+          <div class="cart-list-item">
+            <div class="avatar sm">
+              <img src="../../../assets/images/banner4.jpg" />
+            </div>
+            <div class="cart-list-item-body">
+              <h6 class="mb-1">Product</h6>
+              <span class="xs text-primary">
+                Rs. 500 X 1
+              </span>
+            </div>
+          </div>
+          <div class="cart-list-item">
+            <div class="avatar sm">
+              <img src="../../../assets/images/banner4.jpg" />
+            </div>
+            <div class="cart-list-item-body">
+              <h6 class="mb-1">Product</h6>
+              <span class="xs text-primary">
+                Rs. 500 X 1
+              </span>
+            </div>
+          </div>
+        </div>
+        <ul class="list-unstyled fs-sm pb-3 border-bottom pt-3">
+          <li class="d-flex justify-content-between align-items-center"><span class="me-2">Subtotal:</span><span
+              class="text-end">$265.<small>00</small></span></li>
+          <li class="d-flex justify-content-between align-items-center"><span class="me-2">Shipping:</span><span
+              class="text-end">—</span></li>
+          <li class="d-flex justify-content-between align-items-center"><span class="me-2">Taxes:</span><span
+              class="text-end">$9.<small>50</small></span></li>
+          <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span
+              class="text-end">—</span></li>
+        </ul>
+        <h3 class="fw-normal text-center my-4">$274.<small class='d-inline'>50</small></h3>
+        <form class="needs-validation" method="post" novalidate="">
+          <div class="mb-3">
+            <input class="form-control" type="text" placeholder="Promo code" required="">
+            <div class="invalid-feedback">Please provide promo code.</div>
+          </div>
+          <button class="btn btn-outline-primary d-block w-100" type="submit">Apply promo code</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
