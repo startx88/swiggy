@@ -48,11 +48,7 @@ export class OutletDetailComponent implements OnInit {
     return element;
   }
 
-  ngAfterViewChecked() {
-    const products = this.restaurant.category.map((x) => x.products);
-
-    console.log(products);
-  }
+  ngAfterViewChecked() {}
 
   ngOnDestroy() {
     if (this.subscription) {

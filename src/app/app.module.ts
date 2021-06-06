@@ -15,6 +15,8 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { AuthInterceptor } from './helper/auth.interceptor';
 import { OutletDetailComponent } from './views/outlet-detail/outlet-detail.component';
+import { CartComponent } from './views/cart/cart.component';
+import { CheckoutComponent } from './views/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { OutletDetailComponent } from './views/outlet-detail/outlet-detail.compo
     HeaderComponent,
     FooterComponent,
     OutletDetailComponent,
+    CartComponent,
+    CheckoutComponent,
   ],
   imports: [BrowserModule, AppRouterModule, SharedModule, HttpClientModule],
   providers: [

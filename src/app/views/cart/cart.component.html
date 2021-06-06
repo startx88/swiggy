@@ -1,0 +1,42 @@
+<div class="hero">
+  <div class="container d-flex justify-content-between align-items-center">
+    <h1 class="text-white mb-0">Cart</h1>
+    <nav class="breadcrumb">
+      <ol>
+        <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Library</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+<div class="container mt-5 mb-5">
+  <div class="vcenter" *ngIf="!cart; else cartData">
+    <img src="../../assets/images/empty-cart-img.png" />
+    <h3 class="mt-3">Your cart is empty</h3>
+    <p class="text-gray">You can go to home page to view more restaurants</p>
+    <a routerLink="/" class="btn btn-primary mt-3">View Restaurant</a>
+  </div>
+  <ng-template #cartData>
+    <div class="table">
+      <table class="table">
+        <thead>
+          <tr>
+            <td *ngFor="let item of cart?.items[0] | keyvalue">
+              {{item.key | capitalize}}
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cart?.items">
+            <td *ngFor="let data of item | keyvalue">
+              {{data.value}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="checkout bg-light p-2 text-right">
+        <a routerLink="/checkout" class="btn btn-lg btn-primary">Checkout</a>
+      </div>
+    </div>
+  </ng-template>
+</div>

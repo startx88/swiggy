@@ -16,8 +16,30 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/help"><i class="fa fa-handshake-o mr-2"></i>Help</a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/cart"><i class="fa fa-shopping-basket mr-2"></i>Cart</a>
+        <li class="nav-item dropdown" routerLinkActive="active">
+          <a class="nav-link" routerLink="/cart"><i class="fa fa-shopping-basket mr-2"></i>Cart ({{count}})</a>
+          <div class="dropdown-menu right cart-menu">
+            <div class="dropdown-header">Cart Items</div>
+            <div class="cart-list" *ngIf="cart?.items?.length>0">
+              <a *ngFor="let item of cart.items" class="cart-item d-flex ">
+                <div class="avatar sm"><img src="../../assets/images/recipe.jpg" /></div>
+                <div class="cart-item-body">
+                  <h6> {{item.name |capitalize}}</h6>
+                  <span> {{item.quantity}} X Rs.{{item.price * item.quantity}}</span>
+                </div>
+                <div class="cart-item-action d-flex align-items-center justify-content-between">
+                  <button class="btn btn-icon btn-primary">-</button>
+                  <button class="btn btn-icon btn-primary ml-2">+</button>
+                </div>
+              </a>
+            </div>
+            <div class="cart-total text-center">
+              <p class="sm mb-2">Subtotal: <b class="text-primary">Rs.{{cart?.total}}</b></p>
+            </div>
+            <div class="cart-checkout pt-2">
+              <button class="btn  btn-primary btn-block">Checkout </button>
+            </div>
+          </div>
         </li>
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/auth"><i class="fa fa-user mr-2"></i>Sign In</a>

@@ -50,9 +50,13 @@
       </div>
     </div>
     <div class="product-item-img" style="background-image: url('{{product.image}}')">
-      <div class="product-item-counter mt-3 d-flex justify-content-between align-items-center">
+      <div class="d-flex w-full" *ngIf="isCartBtn && !hasItemInCart">
+        <button class="btn btn-primary btn-block" (click)="addToCart()">Add to cart</button>
+      </div>
+      <div *ngIf="cart?.items.length > 0 && hasItemInCart"
+        class="product-item-counter mt-3 d-flex justify-content-between align-items-center">
         <button class="btn btn-white">-</button>
-        <span>1</span>
+        <span>{{quantity}}</span>
         <button class="btn btn-white">+</button>
       </div>
     </div>

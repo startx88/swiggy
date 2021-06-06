@@ -111,21 +111,22 @@ export class OutletService {
   addOutlet(outlet: IOutlet) {
     const formdata = new FormData();
     formdata.append('name', outlet.name);
-    formdata.append('email', outlet.email);
-    formdata.append('website', outlet.website);
-    formdata.append('slug', outlet.name.replace(/\s+/, '-'));
-    formdata.append('mobile', outlet.mobile);
-    formdata.append('landline', outlet.landline);
     formdata.append('image', outlet.image);
+    formdata.append('email', outlet.email);
+    formdata.append('mobile', outlet.mobile);
+    formdata.append('website', outlet.website);
+    formdata.append('landline', outlet.landline);
+    formdata.append('description', outlet.description);
     formdata.append('owner', JSON.stringify(outlet.owner));
     formdata.append('manager', JSON.stringify(outlet.manager));
     formdata.append('restaurantType', outlet.restaurantType);
     formdata.append('yearOfBirth', outlet.yearOfBirth);
     formdata.append('servingType', outlet.servingType);
     formdata.append('cuisines', JSON.stringify(outlet.cuisines));
+    formdata.append('daysOpenInWeek', JSON.stringify(outlet.daysOpenInWeek));
     formdata.append('from', outlet.from);
     formdata.append('to', outlet.to);
-    formdata.append('daysOpenInWeek', JSON.stringify(outlet.daysOpenInWeek));
+    formdata.append('openNow', JSON.stringify(outlet.openNow));
     formdata.append('menuImage', outlet.menuImage);
     formdata.append('costFor', outlet.costForTwo.toString());
     formdata.append('isClosed', JSON.stringify(outlet.isClosed));

@@ -11,4 +11,6 @@ export class FooterComponent implements OnInit {
   constructor(public data: DataService) {}
 
   ngOnInit(): void {}
+
+  scrollTop() {}
 }

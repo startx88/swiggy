@@ -10,6 +10,8 @@ import { AuthGuard } from './helper/auth.guard';
 import { AdminGuard } from './helper/admin.guard';
 import { PartnerGuard } from './helper/partner.guard';
 import { OutletDetailComponent } from './views/outlet-detail/outlet-detail.component';
+import { CartComponent } from './views/cart/cart.component';
+import { CheckoutComponent } from './views/checkout/checkout.component';
 
 // App Routes
 const appRoutes: Routes = [
@@ -20,6 +22,8 @@ const appRoutes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'privacy-policy', component: PolicyComponent },
   { path: 'partner-with-us', component: PartnerWithUsComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'checkout', component: CheckoutComponent },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),

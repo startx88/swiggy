@@ -17,12 +17,12 @@ const partnerRoutes: Routes = [
     component: PartnerComponent,
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'welcome', component: WelcomeComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'outlet', component: OutletComponent },
       { path: 'orders', component: PartnerOrderComponent },
       { path: 'products', component: ProductComponent },
       { path: 'users', component: UsersComponent },
-      { path: 'welcome', component: WelcomeComponent },
       { path: 'profile', component: PartnerProfileComponent },
       { path: 'setting', component: PartnerSettingComponent },
     ],

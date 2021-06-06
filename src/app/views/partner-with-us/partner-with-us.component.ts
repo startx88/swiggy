@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-partner-with-us',
@@ -10,7 +11,7 @@ export class PartnerWithUsComponent implements OnInit {
   @Input() bg: string;
   form: FormGroup;
   confirmPasswordError: boolean = false;
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authSrv: AuthService) {}
 
   ngOnInit(): void {
     // initialize form
@@ -29,6 +30,20 @@ export class PartnerWithUsComponent implements OnInit {
       } else {
         this.confirmPasswordError = false;
       }
+    });
+  }
+
+  onRegisterAsPartner() {
+    this.form.markAllAsTouched();
+    if (this.form.invalid) return;
+    delete this.form.value.confirmPassword;
+    const registerData = {
+      ...this.form.value,
+      role: 'partner',
+    };
+    console.log(registerData);
+    this.authSrv.partnerRegistration(registerData).subscribe((response) => {
+      console.log(response);
     });
   }
 

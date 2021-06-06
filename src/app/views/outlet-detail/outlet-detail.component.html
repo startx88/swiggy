@@ -68,7 +68,7 @@
           <small class="xs text-gray">{{category?.products.length}} Item</small>
         </h4>
         <ng-container *ngFor="let product of category?.products">
-          <app-product-item [type]="false" [product]="product"></app-product-item>
+          <app-product-item [isCartBtn]="true" [type]="false" [product]="product"></app-product-item>
         </ng-container>
       </article>
     </div>

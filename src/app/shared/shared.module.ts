@@ -30,6 +30,7 @@ import { TextareaComponent } from './components/textarea/textarea.component';
 import { TitleComponent } from './components/title/title.component';
 import { PincodeVaildatorDirective } from './directives/pincode-vaildator.directive';
 import { ProductItemComponent } from './components/product-item/product-item.component';
+import { ConfirmPasswordDirective } from './directives/confirm-password.directive';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { ProductItemComponent } from './components/product-item/product-item.com
     TitleComponent,
     PincodeVaildatorDirective,
     ProductItemComponent,
+    ConfirmPasswordDirective,
   ],
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [
@@ -93,6 +95,7 @@ import { ProductItemComponent } from './components/product-item/product-item.com
     LoginValidatorDirective,
     PincodeVaildatorDirective,
     ProductItemComponent,
+    ConfirmPasswordDirective,
   ],
 })
 export class SharedModule {}

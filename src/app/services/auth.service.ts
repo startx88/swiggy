@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import {
   IAuthentication,
@@ -53,11 +53,27 @@ export class AuthService {
   register(user: IAuthentication): Observable<IAuthResponse> {
     return this.http.post<IAuthResponse>(this.url + '/signup', user);
   }
+
   // forgot password
   forgotPassword(email: string): Observable<IAuthResponse> {
     return this.http.post<IAuthResponse>(this.url + '/forgot-password', email);
   }
-  // verify email verification
+
+  // registe partner
+  partnerRegistration(partner: IUser) {
+    return this.http.post<IAuthResponse>(this.url + '/signup', partner).pipe(
+      catchError(this.errorHandler),
+      tap((response: IAuthResponse) => {
+        const { data, token } = response;
+        if (data.role === IRole.partner) {
+          this.loggedIn = !!token;
+          localStorage.setItem('partner', JSON.stringify(data));
+          this.user.next(data);
+          this.router.navigate(['/partner/wecome']);
+        }
+      })
+    );
+  }
 
   // auto login
   autoLogin() {
@@ -65,10 +81,8 @@ export class AuthService {
     const expireTime = new Date(JSON.parse(localStorage.getItem('expireTime')));
     const token = localStorage.getItem('token');
     if (!token || new Date() > expireTime) {
-      this.logout();
       return;
     }
-
     if (token) {
       this.loggedIn = true;
       this.user.next(user);
