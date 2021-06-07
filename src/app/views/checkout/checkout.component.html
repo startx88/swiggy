@@ -14,71 +14,103 @@
   <div class="row">
     <div class="col-md-8">
       <app-title title="Shipping details" titleText="Please fill Shipping details"></app-title>
-      <form class="row mt-3" [formGroup]="form">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>First name</label>
-            <input class="form-control gray" formControlName="firstname" name="firstname" />
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Last name</label>
-            <input class="form-control gray" formControlName="lastname" name="lastname" />
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Email</label>
-            <input class="form-control gray" formControlName="email" name="email" />
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Mobile</label>
-            <input class="form-control gray" formControlName="mobile" name="mobile" />
-          </div>
-        </div>
-        <div class="col-md-12" formGroupName="addAddress">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label for="">Addresses</label>
-                <input class="form-control gray" formControlName="address" name="address" />
-              </div>
+      <form class="row mt-3" [formGroup]="form" (ngSubmit)="onCheckoutSubmit()">
+        <ng-container formGroupName="shopping">
+          <div class="col-md-6">
+            <div class="form-group"
+              [ngClass]="{'is-valid':fname.valid && fname.touched,'is-invalid':fname.invalid && fname.touched}">
+              <label>First name</label>
+              <input class="form-control gray" formControlName="firstname" name="firstname"
+                [ngClass]="{'is-valid':fname.valid && fname.touched,'is-invalid':fname.invalid && fname.touched}" />
+              <span class="invalid-feedback">First name is required!</span>
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="">State</label>
-                <input class="form-control gray" formControlName="state" name="state" />
+          </div>
+          <div class="col-md-6">
+            <div class="form-group"
+              [ngClass]="{'is-valid':lname.valid && lname.touched,'is-invalid':lname.invalid && lname.touched}">
+              <label>Last name</label>
+              <input class="form-control gray" formControlName="lastname" name="lastname"
+                [ngClass]="{'is-valid':lname.valid && lname.touched,'is-invalid':lname.invalid && lname.touched}" />
+              <span class="invalid-feedback">First name is required!</span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group"
+              [ngClass]="{'is-valid':email.valid && email.touched,'is-invalid':email.invalid && email.touched}">
+              <label>Email</label>
+              <input class="form-control gray" formControemail="email" name="email"
+                [ngClass]="{'is-valid':email.valid && email.touched,'is-invalid':email.invalid && email.touched}" />
+              <span class="invalid-feedback">Email is required!</span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group"
+              [ngClass]="{'is-valid':mobile.valid && mobile.touched,'is-invalid':mobile.invalid && mobile.touched}">
+              <label>Mobile</label>
+              <input class="form-control gray" formControlName="mobile" name="mobile"
+                [ngClass]="{'is-valid':mobile.valid && mobile.touched,'is-invalid':mobile.invalid && mobile.touched}" />
+              <span class="invalid-feedback">Mobile is required!</span>
+            </div>
+          </div>
+          <div class="col-md-12" formGroupName="addAddress">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group"
+                  [ngClass]="{'is-valid':address.valid && address.touched,'is-invalid':address.invalid && address.touched}">
+                  <label for="">Addresses</label>
+                  <input class="form-control gray" formControlName="address" name="address"
+                    [ngClass]="{'is-valid':address.valid && address.touched,'is-invalid':address.invalid && address.touched}" />
+                  <span class="invalid-feedback">Address is required!</span>
+                </div>
               </div>
+              <div class="col-md-6">
+                <div class="form-group"
+                  [ngClass]="{'is-valid':state.valid && state.touched,'is-invalid':state.invalid && state.touched}">
+                  <label for="">State</label>
+                  <input class="form-control gray" formControlName="state" name="state"
+                    [ngClass]="{'is-valid':state.valid && state.touched,'is-invalid':state.invalid && state.touched}" />
+                  <span class="invalid-feedback">State is required!</span>
+                </div>
 
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="">City</label>
-                <input class="form-control gray" formControlName="city" name="city" />
               </div>
+              <div class="col-md-6">
+                <div class="form-group"
+                  [ngClass]="{'is-valid':city.valid && city.touched,'is-invalid':city.invalid && city.touched}">
+                  <label for="">City</label>
+                  <input class="form-control gray" formControlName="city" name="city"
+                    [ngClass]="{'is-valid':city.valid && city.touched,'is-invalid':city.invalid && city.touched}" />
+                  <span class="invalid-feedback">City is required!</span>
+                </div>
 
-            </div>
-            <div class="col-md-6">
-              <label for="">Postal code</label>
-              <input class="form-control gray" formControlName="pincode" name="pincode" />
-            </div>
-            <div class="col-md-6">
-              <label for="">Land mark</label>
-              <input class="form-control gray" formControlName="landmark" name="landmark" />
+              </div>
+              <div class="col-md-6">
+                <div class="form-group"
+                  [ngClass]="{'is-valid':pincode.valid && pincode.touched,'is-invalid':pincode.invalid && pincode.touched}">
+                  <label for="">Postal code</label>
+                  <input class="form-control gray" formControlName="pincode" name="pincode"
+                    [ngClass]="{'is-valid':pincode.valid && pincode.touched,'is-invalid':pincode.invalid && pincode.touched}" />
+                  <span class="invalid-feedback">Postal code is required!</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group"
+                  [ngClass]="{'is-valid':landmark.valid && landmark.touched,'is-invalid':landmark.invalid && landmark.touched}">
+                  <label for="">Land mark</label>
+                  <input class="form-control gray" formControlName="landmark" name="landmark"
+                    [ngClass]="{'is-valid':landmark.valid && landmark.touched,'is-invalid':landmark.invalid && landmark.touched}" />
+                  <span class="invalid-feedback">Landmark is required!</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-12 mt-5">
+        </ng-container>
+        <div class="col-md-12 mt-5" formGroupName="billing">
           <app-title title="Billing details" titleText="Please fill billing details"></app-title>
           <div class="form-checkbox mb-3">
-            <input #veg (change)="sameAs=$event.target.checked" type="checkbox" id="sameas" name="sameas"
-              value="sameas" />
+            <input #veg (change)="onChange($event)" type="checkbox" id="sameas" name="sameas" value="sameas" />
             <label for="sameas" class="ml-2 primary">Same as shipping address.</label>
           </div>
-          <div class="row" *ngIf="sameAs">
+          <div class="row">
             <div class="col-md-6">
               <div class="form-group">
 
@@ -136,6 +168,12 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="col-md-12 mt-3 text-right">
+          <hr />
+          <div class="bg-light p-2">
+            <button class="btn btn-primary btn-lg">Payment</button>
           </div>
         </div>
       </form>

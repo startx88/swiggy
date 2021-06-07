@@ -18,6 +18,7 @@ import { OutletDetailComponent } from './views/outlet-detail/outlet-detail.compo
 import { CartComponent } from './views/cart/cart.component';
 import { CheckoutComponent } from './views/checkout/checkout.component';
 import { OrderSuccessComponent } from './views/order-success/order-success.component';
+import { PaymentComponent } from './views/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { OrderSuccessComponent } from './views/order-success/order-success.compo
     CartComponent,
     CheckoutComponent,
     OrderSuccessComponent,
+    PaymentComponent,
   ],
   imports: [BrowserModule, AppRouterModule, SharedModule, HttpClientModule],
   providers: [

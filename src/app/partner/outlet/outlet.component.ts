@@ -9,7 +9,6 @@ import {
 
 import { IOutlet } from 'src/app/models/outlet.model';
 import { AlertService } from 'src/app/services/alert.service';
-import { MenuService } from 'src/app/services/menu.service';
 import { OutletService } from 'src/app/services/outlet.service';
 import { onTimeChange } from 'src/app/utility/data';
 import { Color } from 'src/app/utility/enums/color.enum ';
